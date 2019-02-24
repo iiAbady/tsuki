@@ -33,8 +33,8 @@ class HarunaClient extends AkairoClient {
 			password: process.env.LAVALINK_PASSWORD ? process.env.LAVALINK_PASSWORD : 'abooody888',
 			shardCount: 1,
 			hosts: {
-				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000/',
-				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000/',
+				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000',
+				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000',
 				/* eslint-disable multiline-ternary */
 				redis: process.env.REDIS ? {
 					port: 6379,
@@ -132,7 +132,7 @@ class HarunaClient extends AkairoClient {
 				release: '0.1.0'
 			}).install();
 		} else {
-			process.on('unhandledRejection', this.logger.error);
+			process.on('unhandledRejection', this.logger.warn);
 		}
 
 		this.init();
