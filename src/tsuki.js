@@ -1,7 +1,7 @@
 require('dotenv').config();
-const HarunaClient = require('./bot/client/HarunaClient');
+const TsukiClient = require('./bot/client/');
 
-const client = new HarunaClient({ owner: process.env.OWNERS, token: process.env.TOKEN });
+const client = new TsukiClient({ owner: process.env.OWNERS, token: process.env.TOKEN });
 
 client
 	.on('error', err => client.logger.error(`Error:\n${err.stack}`))

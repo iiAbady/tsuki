@@ -1,10 +1,10 @@
 FROM node:10-alpine
 
-LABEL name "Haruna"
+LABEL name "Tsuki"
 LABEL version "0.1.0"
-LABEL maintainer "iCrawl <icrawltogo@gmail.com>"
+LABEL maintainer "Abady <gamersspeaks@gmail.com>"
 
-WORKDIR /usr/src/haruna
+WORKDIR /usr/src/tsuki
 
 COPY package.json yarn.lock ./
 
@@ -27,4 +27,4 @@ ENV NODE_ENV= \
 	REDIS= \
 	RAVEN=
 
-CMD ["node", "src/haruna.js"]
+CMD ["node", "src/tsuki.js"]

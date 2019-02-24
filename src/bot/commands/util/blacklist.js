@@ -7,7 +7,7 @@ class BlacklistCommand extends Command {
 			description: {
 				content: 'Prohibit/Allow a user from using Yukikaze.',
 				usage: '<user>',
-				examples: ['Crawl', '@Crawl', '81440962496172032']
+				examples: ['Abady', '@Abady', '171259176029257728']
 			},
 			category: 'util',
 			ownerOnly: true,
@@ -18,7 +18,7 @@ class BlacklistCommand extends Command {
 					match: 'content',
 					type: 'user',
 					prompt: {
-						start: message => `${message.author}, who would you like to blacklist/unblacklist?`
+						start: message => `${message.author}, Who would you like to blacklist/unblacklist?`
 					}
 				}
 			]

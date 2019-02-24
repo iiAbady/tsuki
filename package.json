@@ -1,9 +1,9 @@
 {
-	"name": "haruna",
+	"name": "tsuki",
 	"version": "0.1.0",
 	"description": "",
-	"main": "src/haruna.js",
-	"author": "iCrawl <icrawltogo@gmail.com>",
+	"main": "src/tsuki.js",
+	"author": "Abady <gamersspeaks@gmail.com>",
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {

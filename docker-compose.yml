@@ -17,9 +17,11 @@ services:
       - ./.env_lavalink
     ports:
       - 7000:7000
+    network_mode: 'host'
 
   redis:
     image: "redis:4-alpine"
     restart: always
     ports:
       - 6379:6379
+    network_mode: 'host'

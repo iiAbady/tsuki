@@ -2,14 +2,14 @@ FROM openjdk:10-jre-slim
 
 LABEL name "Lavalink"
 LABEL version "3.0.0"
-LABEL maintainer "iCrawl <icrawltogo@gmail.com>"
+LABEL maintainer "Abady <gamersspeaks@gmail.com>"
 
 WORKDIR /opt/Lavalink
 
 RUN apt-get update \
 && apt-get install -y curl
 
-RUN curl -o Lavalink.jar https://ci.fredboat.com/repository/download/Lavalink_Build/5551:id/Lavalink.jar?guest=1
+RUN curl -o Lavalink.jar https://ci.fredboat.com/repository/download/Lavalink_Build/6318:id/Lavalink.jar?guest=1
 
 EXPOSE 7000
 

@@ -1,11 +1,11 @@
-# Haruna <img src="https://i.imgur.com/MCuvfV4.png" align="right">
+# Tsuki <img src="https://i.pinimg.com/736x/10/d4/a0/10d4a090bb4d245407155b720ae68671.jpg" align="right">
 > .
 
-I'll get into filling this out later, gotta stay tuned for now.
+The bitch herself!
 
 ## Author
 
-**Haruna** © [iCrawl](https://github.com/iCrawl).  
-Authored and maintained by iCrawl.
+**Tsuki** © [Abady](https://github.com/Abady).  
+Authored and maintained by Abady.
 
-> GitHub [@iCrawl](https://github.com/iCrawl)
+> GitHub [@Abady321x123](https://github.com/Abady321x123)

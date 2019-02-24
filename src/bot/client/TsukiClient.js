@@ -8,7 +8,7 @@ const { default: Storage } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
 const Raven = require('raven');
 
-class HarunaClient extends AkairoClient {
+class TsukiClient extends AkairoClient {
 	constructor(config) {
 		super({ ownerID: config.owner }, {
 			disableEveryone: true,
@@ -46,6 +46,7 @@ class HarunaClient extends AkairoClient {
 			send: (guild, packet) => {
 				const shardGuild = this.guilds.get(guild);
 				if (shardGuild) return shardGuild.shard.send(packet);
+				return Promise.resolve();
 			}
 		});
 		this.redis = this.music.queues.redis;
@@ -158,4 +159,4 @@ class HarunaClient extends AkairoClient {
 	}
 }
 
-module.exports = HarunaClient;
+module.exports = TsukiClient;
