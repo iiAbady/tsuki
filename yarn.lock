@@ -1325,7 +1325,7 @@ sequelize@^4.41.0:
     validator "^10.4.0"
     wkx "^0.4.1"
 
-setimmediate@^1.0.5:
+setimmediate@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
   integrity sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=
