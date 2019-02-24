@@ -5,6 +5,8 @@ const moment = require('moment');
 require('moment-duration-format');
 
 const { version } = require('../../../../package.json');
+const { version: djsversion } = require('discord.js');
+const { version: daversion } = require('discord-akairo');
 
 class StatsCommand extends Command {
 	constructor() {

@@ -4,7 +4,7 @@ const { Util } = require('discord.js');
 const { Client: Lavaqueue } = require('lavaqueue');
 const { createLogger, transports, format } = require('winston');
 const database = require('../structures/Database');
-const { default: Storage } = require('rejects');
+const { default: Storage, ReferenceType } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
 const Raven = require('raven');
 
@@ -31,7 +31,6 @@ class TsukiClient extends AkairoClient {
 		this.music = new Lavaqueue({
 			userID: process.env.ID ? process.env.ID : this.user.id,
 			password: process.env.LAVALINK_PASSWORD ? process.env.LAVALINK_PASSWORD : 'abooody888',
-			shardCount: 1,
 			hosts: {
 				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000',
 				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000',
@@ -50,6 +49,7 @@ class TsukiClient extends AkairoClient {
 			}
 		});
 		this.redis = this.music.queues.redis;
+
 		this.storage = new Storage(this.redis);
 
 		this.on('raw', async packet => {
@@ -57,7 +57,7 @@ class TsukiClient extends AkairoClient {
 				case 'VOICE_STATE_UPDATE':
 					if (packet.d.user_id !== process.env.ID) return;
 					this.music.voiceStateUpdate(packet.d);
-					const players = await this.storage.get('players', { type: 'arr' }); // eslint-disable-line no-case-declarations
+					const players = await this.storage.get('players', { type: ReferenceType.ARRAY }); // eslint-disable-line no-case-declarations
 					let index; // eslint-disable-line no-case-declarations
 					if (Array.isArray(players)) index = players.findIndex(player => player.guild_id === packet.d.guild_id);
 					if (((!players && !index) || index < 0) && packet.d.channel_id) {
