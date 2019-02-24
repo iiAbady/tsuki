@@ -29,11 +29,11 @@ class HarunaClient extends AkairoClient {
 		this.settings = new SettingsProvider(database.model('settings'));
 
 		this.music = new Lavaqueue({
-			userID: process.env.ID,
-			password: process.env.LAVALINK_PASSWORD,
+			userID: process.env.ID ? process.env.ID : this.user.id,
+			password: process.env.LAVALINK_PASSWORD ? process.env.LAVALINK_PASSWORD : 'abooody888',
 			hosts: {
-				rest: process.env.LAVALINK_REST,
-				ws: process.env.LAVALINK_WS,
+				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000/',
+				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000/',
 				/* eslint-disable multiline-ternary */
 				redis: process.env.REDIS ? {
 					port: 6379,
@@ -59,6 +59,7 @@ class HarunaClient extends AkairoClient {
 					let index; // eslint-disable-line no-case-declarations
 					if (Array.isArray(players)) index = players.findIndex(player => player.guild_id === packet.d.guild_id);
 					if (((!players && !index) || index < 0) && packet.d.channel_id) {
+						// eslint-disable-next-line camelcase
 						await this.storage.upsert('players', [{ guild_id: packet.d.guild_id, channel_id: packet.d.channel_id }]);
 					} else if (players && typeof index !== 'undefined' && index >= 0 && !packet.d.channel_id) {
 						players.splice(index, 1);
@@ -79,9 +80,8 @@ class HarunaClient extends AkairoClient {
 			prefix: ['🎶', '🎵', '🎼', '🎹', '🎺', '🎻', '🎷', '🎸', '🎤', '🎧', '🥁'],
 			aliasReplacement: /-/g,
 			allowMention: true,
-			handleEdits: true,
 			commandUtil: true,
-			commandUtilLifetime: 3e5,
+			commandUtilLifetime: 5000,
 			defaultCooldown: 3000,
 			defaultPrompt: {
 				modifyStart: str => `${str}\n\nType \`cancel\` to cancel the command.`,
