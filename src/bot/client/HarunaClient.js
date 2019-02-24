@@ -31,6 +31,7 @@ class HarunaClient extends AkairoClient {
 		this.music = new Lavaqueue({
 			userID: process.env.ID ? process.env.ID : this.user.id,
 			password: process.env.LAVALINK_PASSWORD ? process.env.LAVALINK_PASSWORD : 'abooody888',
+			shardCount: 1,
 			hosts: {
 				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000/',
 				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000/',
