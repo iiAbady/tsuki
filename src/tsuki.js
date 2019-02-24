@@ -1,5 +1,5 @@
 require('dotenv').config();
-const TsukiClient = require('./bot/client/');
+const TsukiClient = require('./bot/client/TsukiClient');
 
 const client = new TsukiClient({ owner: process.env.OWNERS, token: process.env.TOKEN });
 
