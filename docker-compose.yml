@@ -3,7 +3,6 @@ services:
   bot:
     build:
       context: .
-      network: host
     restart: always
     env_file:
       - ./.env
