@@ -21,6 +21,9 @@ services:
 
   redis:
     image: "redis:4-alpine"
+    entrypoint: redis-server --appendonly yes
+    command: > 
+    redis-cli -h redis config set stop-writes-on-bgsave-error no
     restart: always
     ports:
       - 6379:6379
