@@ -31,7 +31,7 @@ class QueueCommand extends Command {
 		const queue = this.client.music.queues.get(message.guild.id);
 		const current = await queue.current();
 		const tracks = [(current || { track: null }).track].concat(await queue.tracks()).filter(track => track);
-		if (!tracks.length) return message.util.send('Got nothing in queue!');
+		if (!tracks.length) return message.util.send(`I guess **${message.guild.name}** have an empty queue, Start a new one!`);
 		const decoded = await this.client.music.decode(tracks);
 		const totalLength = decoded.reduce((prev, song) => prev + song.info.length, 0);
 		const paginated = paginate(decoded.slice(1), page);
@@ -40,17 +40,17 @@ class QueueCommand extends Command {
 		const embed = new MessageEmbed()
 			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
 			.setDescription(stripIndents`
-				**Now playing:**
+				__**Now playing:**__
 				
 				**❯** [${decoded[0].info.title}](${decoded[0].info.uri}) (${timeString(current.position)}/${timeString(decoded[0].info.length)}) 
 
-				**Song queue${paginated.page > 1 ? `, page ${paginated.page}` : ''}:**
+				__**Queue${paginated.page > 1 ? `, page ${paginated.page}` : ''}:**__
 
 				${paginated.items.length ? paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n') : 'No more songs in queue.'}
 
 				**Total queue time:** ${timeString(totalLength)}
 			`);
-		if (paginated.maxPage > 1) embed.setFooter('Use queue <page> to view a specific page.');
+		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginate.maxPage}`);
 
 		return message.util.send(embed);
 	}

@@ -30,6 +30,11 @@ class PlayCommand extends Command {
 		});
 	}
 
+	// eslint-disable-next-line valid-jsdoc
+	/**
+ *
+ * @param {import('discord.js').Message} message -  essag
+ */
 	async exec(message, { query, unshift }) {
 		if (!message.member.voice || !message.member.voice.channel) {
 			return message.util.reply('You have to be in a voice channel first, silly.');
@@ -57,7 +62,7 @@ class PlayCommand extends Command {
 			await queue.add(...res.tracks.map(track => track.track));
 			msg = res.playlistInfo.name;
 		} else {
-			return message.util.send("I know you hate to hear that, but even searching the universe I couldn't find what you were looking for.");
+			return message.util.send(`Are you sure \`\`${query}\`\` is a thing to play? I couldn't find it!`);
 		}
 		if (!queue.player.playing && !queue.player.paused) await queue.start();
 

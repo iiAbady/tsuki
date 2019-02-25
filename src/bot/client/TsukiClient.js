@@ -148,6 +148,7 @@ class TsukiClient extends AkairoClient {
 			listenerHandler: this.listenerHandler
 		});
 
+		this.commandHandler.categories.get('playlist').removeAll();
 		this.commandHandler.loadAll();
 		this.inhibitorHandler.loadAll();
 		this.listenerHandler.loadAll();

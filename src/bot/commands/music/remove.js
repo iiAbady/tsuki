@@ -28,6 +28,7 @@ class RemoveCommand extends Command {
 		}
 		const queue = this.client.music.queues.get(message.guild.id);
 		const tracks = await queue.tracks();
+		if (tracks.length <= 1) return message.channel.send(`Use \`skip\` instead!`);
 		number = number >= 1 ? number - 1 : tracks.length - (~number + 1);
 		const decoded = await this.client.music.decode([tracks[number]]);
 		queue.remove(tracks[number]);

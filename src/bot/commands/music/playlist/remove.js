@@ -37,7 +37,7 @@ class PlaylistRemoveCommand extends Command {
 		playlist.songs.splice(position, 1);
 		await playlist.update({ songs: playlist.songs });
 
-		return message.util.send(`${this.client.emojis.get('479430354759843841')} **Removed:** \`${decoded[0].info.title}\``);
+		return message.util.send(`**Removed:** \`${decoded[0].info.title}\``);
 	}
 }
 

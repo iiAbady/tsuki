@@ -16,8 +16,12 @@ class SetDJRoleCommand extends Command {
 			args: [
 				{
 					id: 'role',
-					match: 'content',
-					type: 'role'
+					type: 'role',
+					prompt: {
+						modifyStart: message => `${message.author}, What should be the DJ Role?`,
+						modifyRetry: message => `${message.author}, That's not a vaild role!`
+					},
+					match: 'content'
 				}
 			]
 		});
@@ -25,7 +29,7 @@ class SetDJRoleCommand extends Command {
 
 	exec(message, { role }) {
 		this.client.settings.set(message.guild, 'djRole', role.id);
-		return message.util.reply(`set DJ role to **${role.name}**`);
+		return message.util.reply(`I've set the DJ role to **${role.name}**`);
 	}
 }
 

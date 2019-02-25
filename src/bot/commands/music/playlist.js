@@ -54,6 +54,7 @@ class PlaylistCommand extends Command {
 
 	exec(message, { method, args }) {
 		if (!method) return;
+		if (!this.client.isOwner(message.author.id)) return message.channel.send(`I'am still working on this one...`);
 		const command = {
 			'create': this.handler.modules.get('playlist-create'),
 			'load': this.handler.modules.get('playlist-load'),
