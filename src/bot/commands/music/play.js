@@ -62,7 +62,7 @@ class PlayCommand extends Command {
 			await queue.add(...res.tracks.map(track => track.track));
 			msg = res.playlistInfo.name;
 		} else {
-			return message.util.send(`Are you sure \`\`${query}\`\` is a thing to play? I couldn't find it!`);
+			return message.util.send(`Are you sure \`\`${query.replace('ytsearch', '')}\`\` is a thing to play? I couldn't find it!`);
 		}
 		if (!queue.player.playing && !queue.player.paused) await queue.start();
 
