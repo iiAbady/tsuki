@@ -1,4 +1,4 @@
-# Tsuki <img src="https://i.imgur.com/V7oNfO6.png" align="right">
+# Tsuki <img src="https://i.imgur.com/zRr47mP.png" align="right">
 > .
 
 The bitch herself!
