@@ -1,0 +1,42 @@
+const { Command } = require('discord-akairo');
+
+class VolumeCommand extends Command {
+	constructor() {
+		super('volume', {
+			aliases: ['volume', 'vol', '🔈'],
+			description: {
+				content: 'Change the volume of current player.',
+				usage: '<number>',
+				examples: ['2', '5']
+			},
+			category: 'music',
+			channel: 'guild',
+			ratelimit: 2,
+			args: [
+				{
+					id: 'vol',
+					type: 'integer'
+				}
+			]
+		});
+	}
+
+	// eslint-disable-next-line valid-jsdoc
+	/**
+ *
+ * @param {import('discord.js').Message} message -  essag
+ */
+	async exec(message, { vol }) {
+		if (!message.member.voice || !message.member.voice.channel) {
+			return message.util.reply('You have to be in a voice channel first, silly.');
+		}
+		const DJ = message.client.settings.get(message.guild.id, 'djRole');
+		const queue = this.client.music.queues.get(message.guild.id);
+		if (!queue.player.playing && !queue.player.paused) return message.channel.send(`Wait, do you want me to have a volume for empty queue? what an idiot.`);
+		if (message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
+		await queue.player.setVolume(vol);
+		return message.channel.send(`Changed volume to ${vol}, ok?`);
+	}
+}
+
+module.exports = VolumeCommand;

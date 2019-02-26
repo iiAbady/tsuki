@@ -80,7 +80,7 @@ class TsukiClient extends AkairoClient {
 
 		this.commandHandler = new CommandHandler(this, {
 			directory: join(__dirname, '..', 'commands'),
-			prefix: ['🎶', '🎵', '🎼', '🎹', '🎺', '🎻', '🎷', '🎸', '🎤', '🎧', '🥁'],
+			prefix: message => ['🎵', this.settings.get(message.guild.id, 'prefix', 't!')],
 			aliasReplacement: /-/g,
 			allowMention: true,
 			commandUtil: true,
@@ -131,16 +131,14 @@ class TsukiClient extends AkairoClient {
 				captureUnhandledRejections: true,
 				autoBreadcrumbs: true,
 				environment: process.env.NODE_ENV,
-				release: '0.1.0'
+				release: '0.8.0'
 			}).install();
 		} else {
 			process.on('unhandledRejection', this.logger.warn);
 		}
-
-		this.init();
 	}
 
-	init() {
+	async _init() {
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.commandHandler.useListenerHandler(this.listenerHandler);
 		this.listenerHandler.setEmitters({
@@ -152,10 +150,12 @@ class TsukiClient extends AkairoClient {
 		this.commandHandler.loadAll();
 		this.inhibitorHandler.loadAll();
 		this.listenerHandler.loadAll();
+
+		await this.settings.init();
 	}
 
 	async start() {
-		await this.settings.init();
+		await this._init();
 		return this.login(this.config.token);
 	}
 }
