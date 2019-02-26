@@ -38,7 +38,8 @@ class TsukiClient extends AkairoClient {
 				redis: process.env.REDIS ? {
 					port: 6379,
 					host: process.env.REDIS,
-					db: 0
+					db: 0,
+					password: 'abooody888'
 				} : ''
 				/* eslint-enable multiline-ternary */
 			},

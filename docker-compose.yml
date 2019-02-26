@@ -22,5 +22,7 @@ services:
   redis:
     image: "redis:4-alpine"
     restart: always
+    command: redis-server --requirepass abooody888
+    entrypoint: redis-server --appendonly yes
     ports:
       - 6379:6379
