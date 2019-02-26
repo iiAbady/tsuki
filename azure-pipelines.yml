@@ -8,6 +8,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    curl -o- -L https://yarnpkg.com/install.sh | bash	
     yarn install
     yarn test
-  displayName: 'npm install and npm build'
+  displayName: 'yarn install and yarn test'
