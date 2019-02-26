@@ -35,5 +35,9 @@
 	},
 	"eslintConfig": {
 		"extends": "aqua/node"
+	},
+	"scripts": {
+		"test": "eslint .",
+		"fix": "yarn test -- fix"
 	}
 }
