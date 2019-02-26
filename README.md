@@ -1,7 +1,7 @@
-# Tsuki <img src="https://i.pinimg.com/736x/10/d4/a0/10d4a090bb4d245407155b720ae68671.jpg" align="right">
-> .
+# Tsuki <img src="https://i.imgur.com/zRr47mP.png" align="right">
+> The bitch herself!
 
-The bitch herself!
+[![Build Status](https://dev.azure.com/yuki-base/Tsuki/_apis/build/status/Tsuki-CI?branchName=master)](https://dev.azure.com/yuki-base/Tsuki/_build/latest?definitionId=4&branchName=master)
 
 ## Author
 
