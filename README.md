@@ -3,7 +3,7 @@
 
 [![Build Status](https://dev.azure.com/yuki-base/Tsuki/_apis/build/status/Tsuki-CI?branchName=master)](https://dev.azure.com/yuki-base/Tsuki/_build/latest?definitionId=4&branchName=master)
 
-## Author
+## Copyrights
 
 **Tsuki** © [Abady](https://github.com/Abady).  
 Authored and maintained by Abady.
