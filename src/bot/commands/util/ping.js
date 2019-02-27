@@ -21,7 +21,7 @@ class PingCommand extends Command {
 		const msg = await message.util.send('Pinging...');
 
 		return message.util.send(
-			RESPONSES[Math.floor(Math.random() * RESPONSES.length)]
+			RESPONSES
 				.replace('$(ping)', Math.round(msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp))
 				.replace('$(heartbeat)', Math.round(this.client.ws.ping))
 		);

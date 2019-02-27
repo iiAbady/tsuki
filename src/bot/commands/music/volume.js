@@ -24,18 +24,23 @@ class VolumeCommand extends Command {
 	// eslint-disable-next-line valid-jsdoc
 	/**
  *
- * @param {import('discord.js').Message} message -  essag
+ * @param {import('discord.js').Message} message
  */
 	async exec(message, { vol }) {
 		if (!message.member.voice || !message.member.voice.channel) {
 			return message.util.reply('You have to be in a voice channel first, silly.');
 		}
 		const DJ = message.client.settings.get(message.guild.id, 'djRole');
+		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 		if (!queue.player.playing && !queue.player.paused) return message.channel.send(`Wait, do you want me to have a volume for empty queue? what an idiot.`);
 		if (message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
+
+		if (vol > 200) return message.channel.send('I\'am pretty sure you don\'t want to have your ears **bleeding**!');
+		if (vol < 1) return message.channel.send('Should I leave instead?!');
+
 		await queue.player.setVolume(vol);
-		return message.channel.send(`Changed volume to ${vol}, ok?`);
+		return message.channel.send(`Changed volume to **${vol}**, are you happy?`);
 	}
 }
 
