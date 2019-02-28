@@ -37,7 +37,7 @@ class PlayCommand extends Command {
  */
 	async exec(message, { query, unshift }) {
 		if (!message.member.voice || !message.member.voice.channel) {
-			return message.util.reply('You have to be in a voice channel first, silly.');
+			return message.util.reply('Join a voice channel first, bitc*');
 		} else if (!message.member.voice.channel.joinable) {
 			return message.util.reply("I don't seem to have permission to enter this voice channel.");
 		} else if (!message.member.voice.channel.speakable) {

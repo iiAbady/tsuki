@@ -24,7 +24,7 @@ class RemoveCommand extends Command {
 
 	async exec(message, { number }) {
 		if (!message.member.voice || !message.member.voice.channel) {
-			return message.util.reply('You have to be in a voice channel first, silly.');
+			return message.util.reply('Join a voice channel first, bitc*');
 		}
 		const queue = this.client.music.queues.get(message.guild.id);
 		const tracks = await queue.tracks();

@@ -15,7 +15,7 @@ class StopCommand extends Command {
 
 	async exec(message) {
 		if (!message.member.voice || !message.member.voice.channel) {
-			return message.util.reply('You have to be in a voice channel first, silly.');
+			return message.util.reply('Join a voice channel first, bitc*');
 		}
 		const DJ = message.member.roles.has(message.client.settings.get(message.guild, 'djRole'));
 		const queue = this.client.music.queues.get(message.guild.id);

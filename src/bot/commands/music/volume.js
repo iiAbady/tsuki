@@ -1,4 +1,4 @@
-const { Command } = require('discord-akairo');
+const { Command, Argument } = require('discord-akairo');
 
 class VolumeCommand extends Command {
 	constructor() {
@@ -15,7 +15,7 @@ class VolumeCommand extends Command {
 			args: [
 				{
 					id: 'vol',
-					type: 'integer'
+					type: Argument.union('integer')
 				}
 			]
 		});
@@ -28,8 +28,9 @@ class VolumeCommand extends Command {
  */
 	async exec(message, { vol }) {
 		if (!message.member.voice || !message.member.voice.channel) {
-			return message.util.reply('You have to be in a voice channel first, silly.');
+			return message.util.reply('Join a voice channel first, bitc*');
 		}
+		if (!vol) return message.channel.send(`Current volume is \`${message.client.settings.get(message.guild.id, 'volume', '100')}\``);
 		const DJ = message.client.settings.get(message.guild.id, 'djRole');
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
@@ -39,6 +40,7 @@ class VolumeCommand extends Command {
 		if (vol > 200) return message.channel.send('I\'am pretty sure you don\'t want to have your ears **bleeding**!');
 		if (vol < 1) return message.channel.send('Should I leave instead?!');
 
+		message.client.settings.set(message.guild.id, 'volume', vol);
 		await queue.player.setVolume(vol);
 		return message.channel.send(`Changed volume to **${vol}**, are you happy?`);
 	}
