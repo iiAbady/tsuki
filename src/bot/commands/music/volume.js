@@ -1,4 +1,4 @@
-const { Command, Argument } = require('discord-akairo');
+const { Command } = require('discord-akairo');
 
 class VolumeCommand extends Command {
 	constructor() {
@@ -15,7 +15,8 @@ class VolumeCommand extends Command {
 			args: [
 				{
 					id: 'vol',
-					type: Argument.union('integer')
+					match: 'phrase',
+					type: 'integer'
 				}
 			]
 		});
