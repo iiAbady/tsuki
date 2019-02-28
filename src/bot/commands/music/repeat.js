@@ -34,7 +34,7 @@ class RepeatCommand extends Command {
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 		if (!queue.player.playing && !queue.player.paused) return message.channel.send(`Theres nothing playing to repeat...`);
-		if (!message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
+		if (DJ && !message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
 
 		if (!mode) return message.channel.send('Please specify the repeat mode. (**on**/**off**)');
 		this.client.settings.set(message.guild.id, 'repeat', mode);

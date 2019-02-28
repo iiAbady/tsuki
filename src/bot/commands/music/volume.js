@@ -36,7 +36,7 @@ class VolumeCommand extends Command {
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 		if (!queue.player.playing && !queue.player.paused) return message.channel.send(`Wait, do you want me to have a volume for empty queue? what an idiot.`);
-		if (message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
+		if (DJ && !message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
 
 		if (vol > 200) return message.channel.send('I\'am pretty sure you don\'t want to have your ears **bleeding**!');
 		if (vol < 1) return message.channel.send('Should I leave instead?!');
