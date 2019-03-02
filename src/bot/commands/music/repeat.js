@@ -38,6 +38,7 @@ class RepeatCommand extends Command {
 
 		if (!mode) return message.channel.send('Please specify the repeat mode. (**on**/**off**)');
 		this.client.settings.set(message.guild.id, 'repeat', mode);
+		return message.channel.send(`🔁 Setted repeat mode to **${mode}**`);
 	}
 }
 
