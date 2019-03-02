@@ -1,6 +1,12 @@
 const { Listener } = require('discord-akairo');
 const Raven = require('raven');
 
+const RESPONSES = [
+	`W-What?!?! That was unexpected. (Error: !{err})`,
+	`Alrrightt! I'am going to fix this asap. (Error: !{err})`,
+	`Thank's for finding this bug for me, I'am going to slay it. (Error: !{err})`
+];
+
 class CommandErrorListener extends Listener {
 	constructor() {
 		super('error', {
@@ -38,6 +44,10 @@ class CommandErrorListener extends Listener {
 			}
 		});
 		Raven.captureException(error);
+		return message.util.send(
+			RESPONSES[Math.floor(Math.random() * RESPONSES.length)]
+				.replace('!{err}', `${command.id}${error.message.length + command.id.length}`)
+		);
 	}
 }
 
