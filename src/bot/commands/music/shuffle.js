@@ -25,7 +25,7 @@ class ShuffleCommand extends Command {
 
 		await queue.shuffle();
 
-		return message.util.send('Shuffled the queue.');
+		return message.util.send('🔀 Shuffled the queue.');
 	}
 }
 

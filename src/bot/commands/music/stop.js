@@ -5,7 +5,7 @@ class StopCommand extends Command {
 		super('stop', {
 			aliases: ['stop', '🛑', '⏹'],
 			description: {
-				content: 'Stops and clears the queue.'
+				content: 'Stops the queue.'
 			},
 			category: 'music',
 			channel: 'guild',
@@ -22,7 +22,7 @@ class StopCommand extends Command {
 		if (DJ) await queue.stop();
 		else await queue.player.pause();
 
-		return message.util.send(`${DJ ? 'Stopped' : 'Paused'} the queue.`);
+		return message.util.send(`🛑 ${DJ ? 'Stopped' : 'Paused'} the queue.`);
 	}
 }
 

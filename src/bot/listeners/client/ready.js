@@ -14,13 +14,13 @@ class ReadyListener extends Listener {
 		this.client.user.setActivity(`@${this.client.user.username} help 🎶`);
 
 		const players = await this.client.storage.get('players', { type: 'arr' });
-		// console.log(players);
 		if (players) {
 			for (const player of players) {
 				if (player.channel_id) {
 					/** @type {import('lavaqueue').Queue} */
 					const queue = this.client.music.queues.get(player.guild_id);
-					await queue.player.setVolume(this.client.settings.get(player.guild_id, 'volume', 100));
+					const vol = this.client.settings.get(player.guild_id, 'volume');
+					if (vol) queue.player.setVolume(vol);
 					await queue.player.join(player.channel_id);
 				}
 			}

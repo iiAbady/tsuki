@@ -1,5 +1,4 @@
 const { Argument, Control, Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
 const paginate = require('../../../util/paginate');
 const timeString = require('../../../util/timeString');
@@ -7,10 +6,10 @@ const timeString = require('../../../util/timeString');
 class SkipCommand extends Command {
 	constructor() {
 		super('skip', {
-			aliases: ['skip', '🚶', '🏃'],
+			aliases: ['skip'],
 			description: {
-				content: 'Skips the amount of songs you specify (defaults to 1)',
-				usage: '<number>',
+				content: 'Skips the amount of songs you specify (1 if you don\'t)',
+				usage: '[number]',
 				examples: ['3', '1']
 			},
 			category: 'music',
@@ -59,17 +58,13 @@ class SkipCommand extends Command {
 		const paginated = paginate(decoded, 1, 10);
 		let index = 10 * (paginated.page - 1);
 
-		const embed = new MessageEmbed()
-			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
-			.setDescription(stripIndents`
-				**Skipped songs**
+		return message.util.send(stripIndents`
+		**Skipped songs:**
 
-				${paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n')}
+		${paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n')}
 
-				**Total skipped time:** ${timeString(totalLength)}
-			`);
-
-		return message.util.send(embed);
+		**Total skipped time:** ${timeString(totalLength)}
+	`);
 	}
 }
 

@@ -38,6 +38,8 @@ class HelpCommand extends Command {
 			return message.util.send(embed);
 		}
 
+		if (command.id === 'playlist') return;
+
 		const embed = new MessageEmbed()
 			.setColor(3447003)
 			.setTitle(`\`${command.aliases[0]} ${command.description.usage ? command.description.usage : ''}\``)

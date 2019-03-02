@@ -43,7 +43,7 @@ class VolumeCommand extends Command {
 
 		message.client.settings.set(message.guild.id, 'volume', vol);
 		await queue.player.setVolume(vol);
-		return message.channel.send(`Changed volume to **${vol}**, are you happy?`);
+		return message.channel.send(`🔈 Changed volume to **${vol}**, are you happy?`);
 	}
 }
 

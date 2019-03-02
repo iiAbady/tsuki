@@ -7,7 +7,7 @@ const timeString = require('../../../util/timeString');
 class QueueCommand extends Command {
 	constructor() {
 		super('queue', {
-			aliases: ['queue', 'q', 'nowplaying', 'np', 'ℹ'],
+			aliases: ['queue', 'nowplaying', 'np'],
 			description: {
 				content: 'Shows you the current queue.',
 				usage: '[page]',
@@ -28,6 +28,7 @@ class QueueCommand extends Command {
 	}
 
 	async exec(message, { page }) {
+		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 		const current = await queue.current();
 		const tracks = [(current || { track: null }).track].concat(await queue.tracks()).filter(track => track);
@@ -38,7 +39,7 @@ class QueueCommand extends Command {
 		let index = 10 * (paginated.page - 1);
 
 		const embed = new MessageEmbed()
-			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
+			.setAuthor(`${message.guild.name}'s Queue`, message.guild.iconURL)
 			.setDescription(stripIndents`
 				__**Now playing:**__
 				
@@ -48,7 +49,7 @@ class QueueCommand extends Command {
 
 				${paginated.items.length ? paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n') : 'No more songs in queue.'}
 
-				**Total queue time:** ${timeString(totalLength)}
+				**Total queue items:** ${decoded.length} | **Total queue time:** ${timeString(totalLength)}
 			`);
 		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginate.maxPage}`);
 
