@@ -44,6 +44,7 @@ class SkipCommand extends Command {
 		if (!message.member.voice || !message.member.voice.channel) {
 			return message.util.reply('Join a voice channel first, bitc*');
 		}
+		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 		let tracks;
 		if (number > 1) tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}`, 0, number - 2);

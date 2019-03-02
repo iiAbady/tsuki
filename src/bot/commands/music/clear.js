@@ -5,7 +5,7 @@ class ClearCommand extends Command {
 		super('clear', {
 			aliases: ['clear', 'c'],
 			description: {
-				content: 'Clears the queue'
+				content: 'Clears the queue including the current track'
 			},
 			category: 'music',
 			channel: 'guild',
@@ -18,10 +18,11 @@ class ClearCommand extends Command {
 			return message.util.reply('Join a voice channel first, bitc*');
 		}
 		const DJ = message.client.settings.get(message.guild.id, 'djRole');
-		const queue = this.client.music.queues.get(message.guild.id);
 		if (DJ && !message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
+		/** @type {import('lavaqueue').Queue} */
+		const queue = this.client.music.queues.get(message.guild.id);
 
-		await queue.clear();
+		await queue.trim(1, -1);
 		return message.util.send('ok');
 	}
 }
