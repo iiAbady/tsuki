@@ -1,5 +1,6 @@
 const { Argument, Control, Command } = require('discord-akairo');
 const { stripIndents } = require('common-tags');
+const { MessageEmbed } = require('discord.js');
 const paginate = require('../../../util/paginate');
 const timeString = require('../../../util/timeString');
 
@@ -58,14 +59,16 @@ class SkipCommand extends Command {
 		const totalLength = decoded.reduce((prev, song) => prev + song.info.length, 0);
 		const paginated = paginate(decoded, 1, 10);
 		let index = 10 * (paginated.page - 1);
-
-		return message.util.send(stripIndents`
+		const embed = new MessageEmbed()
+			.setDescription(stripIndents`
 		**Skipped songs:**
 
 		${paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n')}
 
 		**Total skipped time:** ${timeString(totalLength)}
-	`);
+	`).setColor('ORANGE');
+
+		return message.util.send(embed);
 	}
 }
 
