@@ -50,12 +50,9 @@ class TsukiClient extends AkairoClient {
 			},
 			advanceBy: async queue => {
 				const repeatGuild = this.settings.get(queue.guildID, 'repeat');
+				queue.store.get(queue.guildID).tracks;
 				if (repeatGuild === 'on') return 0;
-				if (repeatGuild === 'queue') {
-					const total = await queue.length();
-					const { position } = await queue.current();
-					if (position === total) return -(total - 1);
-				}
+				return +1;
 			}
 		});
 

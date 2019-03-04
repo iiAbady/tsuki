@@ -37,6 +37,8 @@ class RepeatCommand extends Command {
 		if (DJ && !message.member.roles.has(DJ)) return message.channel.send(`Only **${message.guild.roles.get(DJ).name}** can do this.`);
 
 		if (!mode) return message.channel.send('Please specify the repeat mode. (**on**/**off**/**queue**)');
+		if (mode === 'off') this.client.settings.delete(message.guild.id, 'repeat');
+
 		this.client.settings.set(message.guild.id, 'repeat', mode);
 		return message.channel.send(`🔁 Setted repeat mode to **${mode}**`);
 	}
