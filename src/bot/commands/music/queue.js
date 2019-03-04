@@ -50,7 +50,8 @@ class QueueCommand extends Command {
 				${paginated.items.length ? paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n') : 'No more songs in queue.'}
 
 				**Total queue items:** ${decoded.length} | **Total queue time:** ${timeString(totalLength)}
-			`);
+			`)
+			.setColor('#7ec0ee');
 		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginate.maxPage}`);
 
 		return message.util.send(embed);

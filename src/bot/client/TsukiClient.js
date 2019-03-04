@@ -48,10 +48,14 @@ class TsukiClient extends AkairoClient {
 				if (shardGuild) return shardGuild.shard.send(packet);
 				return Promise.resolve();
 			},
-			advanceBy: queue => {
+			advanceBy: async queue => {
 				const repeatGuild = this.settings.get(queue.guildID, 'repeat');
 				if (repeatGuild === 'on') return 0;
-				return +1;
+				if (repeatGuild === 'onqueue') {
+					const total = await queue.length();
+					const { position } = await queue.current();
+					if (position === total) return -(total - 1);
+				}
 			}
 		});
 
