@@ -52,7 +52,7 @@ class QueueCommand extends Command {
 				**Total queue items:** ${decoded.length} | **Total queue time:** ${timeString(totalLength)}
 			`)
 			.setColor('#7ec0ee');
-		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginate.maxPage}`);
+		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginated.maxPage}`);
 
 		return message.util.send(embed);
 	}
