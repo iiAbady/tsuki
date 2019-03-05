@@ -45,14 +45,14 @@ class QueueCommand extends Command {
 				
 				**❯** [${decoded[0].info.title}](${decoded[0].info.uri}) (${timeString(current.position)}/${timeString(decoded[0].info.length)}) 
 
-				__**Queue${paginated.page > 1 ? `, page ${paginated.page}` : ''}:**__
+				__**Queue**__
 
 				${paginated.items.length ? paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n') : 'No more songs in queue.'}
 
 				**Total queue items:** ${decoded.length} | **Total queue time:** ${timeString(totalLength)}
 			`)
 			.setColor('#7ec0ee');
-		if (paginated.maxPage > 1) embed.setFooter(`Total pages: ${paginated.maxPage}`);
+		if (paginated.maxPage > 1) embed.setFooter(`Page ${page}/${paginated.maxPage}`, 'https://discordapp.com/assets/0aeefa18b249262cd4b8acf15149e3a0.svg');
 
 		return message.util.send(embed);
 	}
