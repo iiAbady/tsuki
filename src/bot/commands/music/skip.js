@@ -49,7 +49,8 @@ class SkipCommand extends Command {
 		const queue = this.client.music.queues.get(message.guild.id);
 		let tracks;
 		if (number > 1) tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}`, 0, number - 2);
-		tracks = [(await queue.current()).track].concat(tracks);
+		const current = await queue.current();
+		tracks = [(current || { track: null }).track].concat(tracks).filter(track => track);
 		const skip = await queue.next(number);
 		if (!skip) {
 			await queue.stop();
@@ -58,7 +59,7 @@ class SkipCommand extends Command {
 		const decoded = await this.client.music.decode(tracks.filter(track => track));
 		const totalLength = decoded.reduce((prev, song) => prev + song.info.length, 0);
 		const paginated = paginate(decoded, 1, 10);
-		let index = 10 * (paginated.page - 1);
+		let index = (paginated.page - 1) * 10;
 		const embed = new MessageEmbed()
 			.setDescription(stripIndents`
 		**Skipped songs:**
@@ -66,7 +67,8 @@ class SkipCommand extends Command {
 		${paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n')}
 
 		**Total skipped time:** ${timeString(totalLength)}
-	`).setColor('ORANGE');
+	`).setColor('ORANGE')
+	 .setFooter(`Requested by ${message.author.tag} (${message.author.id})`, message.author.avatarURL);
 
 		return message.util.send(embed);
 	}
