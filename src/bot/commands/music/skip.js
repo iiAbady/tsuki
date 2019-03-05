@@ -56,7 +56,7 @@ class SkipCommand extends Command {
 			await queue.stop();
 			return message.util.send('Skipped the last playing song.');
 		}
-		const decoded = await this.client.music.decode(tracks.filter(track => track));
+		const decoded = await this.client.music.decode(tracks);
 		const totalLength = decoded.reduce((prev, song) => prev + song.info.length, 0);
 		const paginated = paginate(decoded, 1, 10);
 		let index = (paginated.page - 1) * 10;

@@ -18,8 +18,8 @@ class SetDJRoleCommand extends Command {
 					id: 'role',
 					type: 'role',
 					prompt: {
-						modifyStart: message => `${message.author}, What should be the DJ Role?`,
-						modifyRetry: message => `${message.author}, That's not a vaild role!`
+						start: message => `${message.author}, What should be the DJ Role?`,
+						retry: message => `${message.author}, That's not a vaild role!`
 					},
 					match: 'content'
 				}
