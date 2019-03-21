@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 const { Argument, Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
@@ -27,6 +28,10 @@ class QueueCommand extends Command {
 		});
 	}
 
+	/**
+	 *
+	 * @param {import('discord.js').Message} message
+	 */
 	async exec(message, { page }) {
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
@@ -39,7 +44,7 @@ class QueueCommand extends Command {
 		let index = 10 * (paginated.page - 1);
 
 		const embed = new MessageEmbed()
-			.setAuthor(`${message.guild.name}'s Queue`, message.guild.iconURL)
+			.setAuthor(`${message.guild.name}'s Queue`, message.guild.iconURL())
 			.setDescription(stripIndents`
 				__**Now playing:**__
 				

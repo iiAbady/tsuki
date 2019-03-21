@@ -35,7 +35,7 @@ class PlaylistInfoCommand extends Command {
 			.addField('❯ Name', playlist.name)
 			.addField('❯ Description', playlist.description ? playlist.description.substring(0, 1020) : 'No description.')
 			.addField('❯ Owner', user ? `${user.tag} (ID: ${user.id})` : "Couldn't fetch user.")
-			.addField('❯ Songs', playlist.songs.length || 'No songs.');
+			.addField('❯ Songs', `${playlist.songs.length || 'No'} songs`);
 			// .addField('❯ Guild', guild ? `${guild.name}` : "Couldn't fetch guild.")
 			// .addField('❯ Plays', playlist.plays);
 			// .addField('❯ Created at', moment.utc(playlist.createdAt).format('YYYY/MM/DD hh:mm:ss'))
