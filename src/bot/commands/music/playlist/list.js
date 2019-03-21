@@ -16,8 +16,9 @@ class PlaylistListCommand extends Command {
 			ratelimit: 2,
 			args: [
 				{
-					id: 'member',
-					type: 'member'
+					'id': 'member',
+					'type': 'member',
+					'default': message => message.member
 				},
 				{
 					id: 'page',
