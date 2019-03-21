@@ -22,7 +22,7 @@ class SkipCommand extends Command {
 					match: 'flag',
 					flag: ['--force', '-f']
 				},
-				Control.if((msg, args) => msg.member.roles.has(msg.client.settings.get(msg.guild.id, 'djRole')) && args.force, [
+				Control.if((msg, args) => msg.member.roles.has(msg.client.settings.get(msg.guild.id, 'djRole')) || args.force, [
 					{
 						'id': 'number',
 						'match': 'rest',

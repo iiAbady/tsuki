@@ -41,7 +41,7 @@ class PlaylistLoadCommand extends Command {
 		playlist.plays += 1;
 		playlist.save();
 
-		return message.util.send(`**Queued up:** \`${playlist.name}\` from ${user.tag}`);
+		return message.util.send(`**Queued up:** \`${playlist.name}\` from \`${user.tag}\``);
 	}
 }
 

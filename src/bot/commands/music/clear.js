@@ -22,7 +22,7 @@ class ClearCommand extends Command {
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
 
-		await queue.trim(1, -1);
+		await queue.trim(-1, 1);
 		return message.util.send(':thumbsup:');
 	}
 }

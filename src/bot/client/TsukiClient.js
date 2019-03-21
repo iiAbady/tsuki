@@ -106,8 +106,7 @@ class TsukiClient extends AkairoClient {
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
 				where: {
-					name: phrase,
-					guild: message.guild.id
+					name: phrase
 				}
 			});
 
@@ -118,8 +117,7 @@ class TsukiClient extends AkairoClient {
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
 				where: {
-					name: phrase,
-					guild: message.guild.id
+					name: phrase
 				}
 			});
 

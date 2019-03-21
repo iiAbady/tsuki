@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) =>
 			type: DataTypes.BIGINT,
 			allowNull: false
 		},
-		guild: {
-			type: DataTypes.BIGINT,
-			allowNull: false
-		},
+		// guild: {
+		// 	type: DataTypes.BIGINT,
+		// 	allowNull: false
+		// },
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) =>
 		timestamps: true,
 		indexes: [
 			{ fields: ['user'] },
-			{ fields: ['guild'] },
 			{ fields: ['name'] }
 		]
 	});

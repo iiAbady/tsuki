@@ -10,6 +10,6 @@ sequelize.import(join(__dirname, '..', 'models', 'settings'));
 sequelize.import(join(__dirname, '..', 'models', 'playlists'));
 
 
-sequelize.sync();
+sequelize.sync({ force: true });
 
 module.exports = sequelize;
