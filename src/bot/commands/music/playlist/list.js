@@ -34,7 +34,7 @@ class PlaylistListCommand extends Command {
 		const paginated = paginate(playlists, page);
 
 		const embed = new MessageEmbed()
-			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
+			.setAuthor(`${member.user.tag} (${member.id})`, member.user.displayAvatarURL())
 			.setDescription(stripIndents`
 				__**Playlists:**__
 
