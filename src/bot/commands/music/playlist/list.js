@@ -36,11 +36,11 @@ class PlaylistListCommand extends Command {
 		const embed = new MessageEmbed()
 			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
 			.setDescription(stripIndents`
-				**Playlists${paginated.page > 1 ? `, page ${paginated.page}` : ''}**
+				__**Playlists:**__
 
 				${paginated.items.map(playlist => `** • ** ${playlist.name}`).join('\n')}
 			`);
-		if (paginated.maxPage > 1) embed.setFooter('Use playlist list <member> <page> to view a specific page.');
+		if (paginated.maxPage > 1) embed.setFooter(`Page ${page}/${paginated.maxPage}`, 'https://i.imgur.com/nFPDKdU.png');
 
 		return message.util.send(embed);
 	}

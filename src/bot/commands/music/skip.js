@@ -22,7 +22,7 @@ class SkipCommand extends Command {
 					match: 'flag',
 					flag: ['--force', '-f']
 				},
-				Control.if((msg, args) => msg.member.roles.has(msg.client.settings.get(msg.guild, 'djRole')) && args.force, [
+				Control.if((msg, args) => msg.member.roles.has(msg.client.settings.get(msg.guild.id, 'djRole')) && args.force, [
 					{
 						'id': 'number',
 						'match': 'rest',
@@ -47,6 +47,7 @@ class SkipCommand extends Command {
 		}
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
+		if (!queue.player.playing) return message.util.send(`There's nothing I can skip.`);
 		let tracks;
 		if (number > 1) tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}`, 0, number - 2);
 		const current = await queue.current();

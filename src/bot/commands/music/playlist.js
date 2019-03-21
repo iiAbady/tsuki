@@ -16,23 +16,20 @@ class PlaylistCommand extends Command {
 					 • show \`<playlist>\` \`[page]\`
 					 • info \`<playlist>\`
 					 • list \`[member]\` \`[page]\`
-
-					Required: \`<>\` | Optional: \`[]\`
-
-					For additional \`<...arguments>\` usage refer to the examples below.
 				`,
 				usage: '<method> <...arguments>',
 				examples: [
 					'create Test',
-					'create Test Some additional description',
+					'create Test description',
 					'load Test',
 					'add Test <link/playlist>',
 					'remove Test 3',
-					'edit Test Some other additional info',
+					'edit Test info',
 					'show Test',
 					'show Test 3',
 					'info Test',
-					'list Abady 2'
+					'list Abady 2',
+					'list xRokz 5'
 				]
 			},
 			category: 'music',
@@ -54,7 +51,6 @@ class PlaylistCommand extends Command {
 
 	exec(message, { method, args }) {
 		if (!method) return;
-		if (!this.client.isOwner(message.author.id)) return message.channel.send(`I'am still working on this one...`);
 		const command = {
 			'create': this.handler.modules.get('playlist-create'),
 			'load': this.handler.modules.get('playlist-load'),

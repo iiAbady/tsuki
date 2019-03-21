@@ -6,7 +6,7 @@ class PlaylistAddCommand extends Command {
 	constructor() {
 		super('playlist-add', {
 			description: {
-				content: 'Adds a song to the playlist.',
+				content: 'Adds a song to your playlist.',
 				usage: '<playlist> <link/playlist>',
 				examples: []
 			},
@@ -18,8 +18,8 @@ class PlaylistAddCommand extends Command {
 					id: 'playlist',
 					type: 'playlist',
 					prompt: {
-						start: message => `${message.author}, what playlist should this song/playlist be added to?`,
-						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
+						start: message => `${message.author}, What playlist should this song be added to?`,
+						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist. Create a new one!`
 					}
 				},
 				{
@@ -51,11 +51,11 @@ class PlaylistAddCommand extends Command {
 			playlist.songs.push(...res.tracks.map(track => track.track));
 			msg = res.playlistInfo.name;
 		} else {
-			return message.util.send("I know you hate to hear that, but even searching the universe I couldn't find what you were looking for.");
+			return message.util.send(`Are you sure \`\`${query.replace('ytsearch', '')}\`\` is a thing to play? I couldn't find it!`);
 		}
 		await playlist.update({ songs: playlist.songs });
 
-		return message.util.send(`**Added to playlist:** \`${msg}\``);
+		return message.util.send(`${this.client.emojis.get('544263946979246129').toString()} **Added to playlist:** \`${msg}\``);
 	}
 }
 

@@ -42,6 +42,8 @@ class PlayCommand extends Command {
 			return message.util.reply("I don't seem to have permission to enter this voice channel.");
 		} else if (!message.member.voice.channel.speakable) {
 			return message.util.send("I don't seem to have permission to talk in this voice channel.");
+		} else if (message.member.voice.channelID !== message.guild.me.voice.channelID && this.client.music.queues.get(message.guild.id).player.playing) {
+			return message.util.send(`You need to be listening in **${message.guild.me.voice.channel.name}** to add songs.`);
 		}
 		if (!query && message.attachments.first()) {
 			query = message.attachments.first().url;

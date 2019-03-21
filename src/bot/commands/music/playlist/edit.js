@@ -16,7 +16,7 @@ class PlaylistEditCommand extends Command {
 					id: 'playlist',
 					type: 'playlist',
 					prompt: {
-						start: message => `${message.author}, what playlists description do you want to edit?`,
+						start: message => `${message.author}, What playlists description do you want to edit?`,
 						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
 					}
 				},
@@ -33,11 +33,11 @@ class PlaylistEditCommand extends Command {
 	}
 
 	async exec(message, { playlist, info }) {
-		if (playlist.user !== message.author.id) return message.util.reply('you can only edit your own playlists.');
+		if (playlist.user !== message.author.id) return message.util.reply(`${this.client.emojis.get('531969546723000323').toString()} fk off bit**`);
 		playlist.description = Util.cleanContent(info, message);
 		await playlist.save();
 
-		return message.util.reply(`successfully updated **${playlist.name}s** description.`);
+		return message.util.reply(`${this.client.emojis.get('544263946979246129').toString()} Updated **${playlist.name}'s** description.`);
 	}
 }
 

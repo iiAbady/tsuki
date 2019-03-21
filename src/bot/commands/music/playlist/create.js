@@ -16,7 +16,7 @@ class PlaylistCreateCommand extends Command {
 					id: 'playlist',
 					type: 'existingPlaylist',
 					prompt: {
-						start: message => `${message.author}, what playlist do you want to create?`,
+						start: message => `${message.author}, What playlist do you want to create?`,
 						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** already exists.`
 					}
 				},
@@ -37,7 +37,7 @@ class PlaylistCreateCommand extends Command {
 			description: info ? Util.cleanContent(info, message) : null
 		});
 
-		return message.util.reply(`successfully created **${pls.name}**.`);
+		return message.util.reply(`${this.client.emojis.get('544263946979246129').toString()} A playlist with the name **${pls.name}** has been created!`);
 	}
 }
 

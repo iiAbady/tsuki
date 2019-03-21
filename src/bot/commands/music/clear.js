@@ -23,7 +23,7 @@ class ClearCommand extends Command {
 		const queue = this.client.music.queues.get(message.guild.id);
 
 		await queue.trim(1, -1);
-		return message.util.send('ok');
+		return message.util.send(':thumbsup:');
 	}
 }
 

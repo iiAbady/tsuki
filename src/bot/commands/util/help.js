@@ -32,13 +32,11 @@ class HelpCommand extends Command {
 				`);
 
 			for (const category of this.handler.categories.values()) {
-				embed.addField(`❯ ${category.id.replace(/(\b\w)/gi, lc => lc.toUpperCase())}`, `${category.filter(cmd => cmd.aliases.length && cmd.id !== 'playlist').map(cmd => `\`${cmd.aliases[0]}\``).join(' ')}`);
+				embed.addField(`❯ ${category.id.replace(/(\b\w)/gi, lc => lc.toUpperCase())}`, `${category.filter(cmd => cmd.aliases.length).map(cmd => `\`${cmd.aliases[0]}\``).join(' ')}`);
 			}
 
 			return message.util.send(embed);
 		}
-
-		if (command.id === 'playlist') return;
 
 		const embed = new MessageEmbed()
 			.setColor(3447003)

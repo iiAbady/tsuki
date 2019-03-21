@@ -21,7 +21,7 @@ class PlaylistShowCommand extends Command {
 					match: 'content',
 					type: 'playlist',
 					prompt: {
-						start: message => `${message.author}, what playlist do you want information on?`,
+						start: message => `${message.author}, What playlist do you want information on?`,
 						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
 					}
 				},
@@ -45,13 +45,13 @@ class PlaylistShowCommand extends Command {
 		const embed = new MessageEmbed()
 			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
 			.setDescription(stripIndents`
-				**Song list${paginated.page > 1 ? `, page ${paginated.page}` : ''}**
+				__**Song list:**__
 
 				${paginated.items.map(song => `**${++index}.** [${song.info.title}](${song.info.uri}) (${timeString(song.info.length)})`).join('\n')}
 
-				**Total list time:** ${timeString(totalLength)}
+				**Total queue items:** ${decoded.length} | **Total queue time:** ${timeString(totalLength)}
 			`);
-		if (paginated.maxPage > 1) embed.setFooter('Use playlist show <playlist> <page> to view a specific page.');
+		if (paginated.maxPage > 1) embed.setFooter(`Page ${page}/${paginated.maxPage}`, 'https://i.imgur.com/nFPDKdU.png');
 
 		return message.util.send(embed);
 	}
