@@ -42,7 +42,7 @@ class PlayCommand extends Command {
 			return message.util.reply("I don't seem to have permission to enter this voice channel.");
 		} else if (!message.member.voice.channel.speakable) {
 			return message.util.send("I don't seem to have permission to talk in this voice channel.");
-		} else if (message.member.voice.channelID !== message.guild.me.voice.channelID && this.client.music.queues.get(message.guild.id).player.playing) {
+		} else if (this.client.music.queues.get(message.guild.id).player.playing && this.client.music.queues.get(message.guild.id).player.paused) {
 			return message.util.send(`You need to be listening in **${message.guild.me.voice.channel.name}** to add songs.`);
 		}
 		if (!query && message.attachments.first()) {
@@ -54,7 +54,7 @@ class PlayCommand extends Command {
 		if (!['http:', 'https:'].includes(url.parse(query).protocol)) query = `ytsearch:${query}`;
 		const res = await this.client.music.load(query);
 		const queue = this.client.music.queues.get(message.guild.id);
-		if (!message.guild.me.voice.channel) await queue.player.join(message.member.voice.channel.id);
+		if (!message.guild.me.voice.channel || message.guild.me.voice.channel.members.filter(m => !m.user.bot).size < 1) await queue.player.join(message.member.voice.channel.id);
 		let msg;
 		if (['TRACK_LOADED', 'SEARCH_RESULT'].includes(res.loadType)) {
 			if (unshift) await queue.unshift(res.tracks[0].track);
