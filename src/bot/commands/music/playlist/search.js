@@ -41,7 +41,7 @@ class PlaylistInfoCommand extends Command {
 		}
 		const embed = new MessageEmbed()
 			.setColor(0x30a9ed)
-			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL)
+			.setAuthor(`${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL())
 			.setDescription(search);
 
 		return message.util.send(embed);
