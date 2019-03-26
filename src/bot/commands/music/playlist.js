@@ -41,7 +41,7 @@ class PlaylistCommand extends Command {
 			args: [
 				{
 					id: 'method',
-					type: ['create', 'add', 'load', 'rm', 'remove', 'del', 'delete', 'edit', 'show', 'info', 'list', 'all']
+					type: ['create', 'add', 'load', 'rm', 'remove', 'del', 'delete', 'edit', 'show', 'info', 'list', 'all', 'search']
 				},
 				{
 					'id': 'args',
@@ -66,7 +66,8 @@ class PlaylistCommand extends Command {
 			'show': this.handler.modules.get('playlist-show'),
 			'info': this.handler.modules.get('playlist-info'),
 			'list': this.handler.modules.get('playlist-list'),
-			'all': this.handler.modules.get('playlist-all')
+			'all': this.handler.modules.get('playlist-all'),
+			'search': this.handler.modules.get('playlist-search')
 		}[method];
 
 		return this.handler.handleDirectCommand(message, args, command, true);
