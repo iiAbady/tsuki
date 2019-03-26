@@ -29,12 +29,12 @@ class PlaylistInfoCommand extends Command {
  * @param {import('discord.js').Message} message
  */
 	async exec(message, { page }) {
-		const playlists = await this.client.db.models.playlists.findAll({ where: { guild: message.guild.id } });
-		if (!playlists) return message.util.send(`Looks like there's no playlists on ${message.guild.name}`);
+		const playlists = await this.client.db.models.playlists.findAll();
+		if (!playlists) return message.util.send(`Looks like I don't have any of playlists.`);
 		const paginated = paginate(playlists, page);
 		let index = 10 * (paginated.page - 1);
 		const embed = new MessageEmbed()
-			.setAuthor(`${message.guild.name}'s Playlists`, message.guild.iconURL())
+			.setAuthor(`Playlists`, this.client.user.displayAvatarURL())
 			.setColor('BLUE')
 			.setDescription(paginated.items.map(playlist => `**${++index}.** **${playlist.name}** by ${this.client.users.get(playlist.user) ? this.client.users.get(playlist.user).tag : "Couldn't fetch user."}`));
 		return message.util.send(embed);
