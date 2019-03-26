@@ -5,7 +5,7 @@ const paginate = require('../../../../util/paginate');
 
 class PlaylistInfoCommand extends Command {
 	constructor() {
-		super('playlist-info', {
+		super('playlist-all', {
 			category: 'music',
 			description: {
 				content: 'Displays all playlists in your guild.'
