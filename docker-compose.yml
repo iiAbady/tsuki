@@ -18,7 +18,6 @@ services:
     ports:
       - 7000:7000
     network_mode: 'host'
-    mem_limit: 4GB
 
   redis:
     image: "redis:4-alpine"
@@ -26,4 +25,3 @@ services:
     command: redis-server --requirepass abooody888
     ports:
       - 6379:6379
-    mem_limit: 1GB
