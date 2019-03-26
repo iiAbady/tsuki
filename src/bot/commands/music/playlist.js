@@ -16,6 +16,8 @@ class PlaylistCommand extends Command {
 					 • show \`<playlist>\` \`[page]\`
 					 • info \`<playlist>\`
 					 • list \`[member]\` \`[page]\`
+					 • all
+					 • search \`<name>\`
 				`,
 				usage: '<method> <...arguments>',
 				examples: [
@@ -29,7 +31,8 @@ class PlaylistCommand extends Command {
 					'show Test 3',
 					'info Test',
 					'list Abady 2',
-					'list xRokz 5'
+					'list xRokz 5',
+					'search jpop'
 				]
 			},
 			category: 'music',

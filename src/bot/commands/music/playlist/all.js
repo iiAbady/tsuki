@@ -30,7 +30,7 @@ class PlaylistInfoCommand extends Command {
  */
 	async exec(message, { page }) {
 		const playlists = await this.client.db.models.playlists.findAll();
-		if (!playlists) return message.util.send(`Looks like I don't have any of playlists.`);
+		if (!playlists.length) return message.util.send(`Looks like I don't have any of playlists.`);
 		const paginated = paginate(playlists, page);
 		let index = 10 * (paginated.page - 1);
 		const embed = new MessageEmbed()
