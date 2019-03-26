@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 
 class PlaylistInfoCommand extends Command {
 	constructor() {
-		super('playlist-all', {
+		super('playlist-search', {
 			category: 'music',
 			description: {
 				content: 'Searches a playlist.',
