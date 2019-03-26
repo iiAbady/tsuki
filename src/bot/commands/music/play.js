@@ -42,7 +42,7 @@ class PlayCommand extends Command {
 			return message.util.reply("I don't seem to have permission to enter this voice channel.");
 		} else if (!message.member.voice.channel.speakable) {
 			return message.util.send("I don't seem to have permission to talk in this voice channel.");
-		} else if (this.client.music.queues.get(message.guild.id).player.playing && this.client.music.queues.get(message.guild.id).player.paused) {
+		} else if ((this.client.music.queues.get(message.guild.id).player.playing || this.client.music.queues.get(message.guild.id).player.paused) && message.guild.me.voice.channel.members.filter(m => !m.user.bot).size > 1) {
 			return message.util.send(`You need to be listening in **${message.guild.me.voice.channel.name}** to add songs.`);
 		}
 		if (!query && message.attachments.first()) {
@@ -62,7 +62,7 @@ class PlayCommand extends Command {
 			msg = res.tracks[0].info.title;
 		} else if (res.loadType === 'PLAYLIST_LOADED') {
 			await queue.add(...res.tracks.map(track => track.track));
-			msg = res.playlistInfo.name;
+			msg = `${res.playlistInfo.name} (Playlist)`;
 		} else {
 			return message.util.send(`Are you sure \`\`${query.replace('ytsearch', '')}\`\` is a thing to play? I couldn't find it!`);
 		}
