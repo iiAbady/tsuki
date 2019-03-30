@@ -48,7 +48,7 @@ class QueueCommand extends Command {
 			.setDescription(stripIndents`
 				__**Now playing:**__
 				
-				**❯** [${decoded[0].info.title}](${decoded[0].info.uri}) (${timeString(current.position)}/${timeString(decoded[0].info.length)}) 
+				**❯** [${decoded[0].info.title}](${decoded[0].info.uri}) (${timeString(current.position)}/${timeString(decoded[0].info.length)}) by \`${decoded[0].info.author}\`
 
 				__**Queue:**__
 
