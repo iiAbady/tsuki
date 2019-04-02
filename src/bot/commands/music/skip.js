@@ -52,8 +52,8 @@ class SkipCommand extends Command {
 		if (number > 1) {
 			tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}.next`, 0, number - 2);
 			this.client.logger.info(tracks);
-			tracks.reverse();
-			this.client.logger.info(tracks);
+			 tracks = tracks.reverse();
+			 this.client.logger.info(tracks);
 		}
 		const current = await queue.current();
 		tracks = [(current || { track: null }).track].concat(tracks).filter(track => track);
