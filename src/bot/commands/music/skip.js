@@ -49,9 +49,7 @@ class SkipCommand extends Command {
 		const queue = this.client.music.queues.get(message.guild.id);
 		if (!queue.player.playing) return message.util.send(`There's nothing I can skip.`);
 		let tracks;
-		if (number > 1) tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}`, 0, number - 2);
-		this.client.logger.info(tracks);
-		this.client.music.queues.redis.lrange(`playlists.${message.guild.id}`, 0, 10).then(this.client.logger.info);
+		if (number > 1) tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}.pos`, 0, number - 2);
 		const current = await queue.current();
 		tracks = [(current || { track: null }).track].concat(tracks).filter(track => track);
 		const skip = await queue.next(number);
