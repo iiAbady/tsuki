@@ -1,4 +1,5 @@
 const { Command } = require('discord-akairo');
+const timeString = require('../../../util/timeString');
 
 class SeekCommand extends Command {
 	constructor() {
@@ -45,9 +46,9 @@ class SeekCommand extends Command {
 		const decoded = await this.client.music.decode(current.track);
 		if (time && time < decoded.length && decoded.isSeekable) {
 			await queue.player.seek(time);
-			return message.channel.send(`✂ ${time} of the current track`);
+			return message.channel.send(`sought to ${timeString(time)} of the current track, happy bit**?`);
 		}
-		return message.channel.send(`I couldn't seek to ${time}, sorry ${this.client.emojis.get('538757805562265611').toString()}`);
+		return message.channel.send(`I couldn't seek to ${timeString(time)}, sorry ${this.client.emojis.get('538757805562265611').toString()}`);
 	}
 }
 
