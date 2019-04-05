@@ -43,7 +43,7 @@ class SeekCommand extends Command {
 		const current = await queue.current() || null;
 		if (!current) return message.channel.send(`There's is nothing playing to seek`);
 		const decoded = await this.client.music.decode(current.track);
-		this.client.logger.info(`${current.track} - ${decoded}`);
+		this.client.logger.info(`${Object.keys(decoded)}`);
 		if (time && time < decoded.info.length && decoded.info.isSeekable) {
 			await queue.player.seek(time);
 			return message.channel.send(`✂ ${time} of the current track`);
