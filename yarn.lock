@@ -338,14 +338,16 @@ discord-akairo@1Computer1/discord-akairo:
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/32a432f4a55094ea7c0f6260529f8f911ea8a2de"
+  uid "00eb7e325a4bbc41faa7411a26c3c82cf60d83c1"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/00eb7e325a4bbc41faa7411a26c3c82cf60d83c1"
   dependencies:
-    form-data "^2.3.2"
-    node-fetch "^2.1.2"
-    pako "^1.0.0"
-    prism-media amishshah/prism-media
-    tweetnacl "^1.0.0"
-    ws "^6.0.0"
+    form-data "^2.3.3"
+    node-fetch "^2.3.0"
+    pako "^1.0.8"
+    prism-media "^1.0.0"
+    setimmediate "^1.0.5"
+    tweetnacl "^1.0.1"
+    ws "^6.1.3"
 
 doctrine@^3.0.0:
   version "3.0.0"
@@ -562,7 +564,7 @@ flatted@^2.0.0:
   version "0.0.6"
   resolved "https://codeload.github.com/mercadolibre/flexbuffer-node/tar.gz/1487df393a30872e3e81b246711a4cf6b0b23314"
 
-form-data@^2.3.2:
+form-data@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
   integrity sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==
@@ -906,7 +908,7 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-node-fetch@^2.1.2:
+node-fetch@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
   integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
@@ -952,7 +954,7 @@ packet-reader@1.0.0:
   resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-1.0.0.tgz#9238e5480dedabacfe1fe3f2771063f164157d74"
   integrity sha512-HAKu/fG3HpHFO0AA8WE8q2g+gBJaZ9MG7fcKk+IJPLTGAD6Psw4443l+9DGRbOIh3/aXr7Phy0TjilYivJo5XQ==
 
-pako@^1.0.0:
+pako@^1.0.8:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
   integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
@@ -1057,9 +1059,10 @@ prelude-ls@~1.1.2:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
 
-prism-media@amishshah/prism-media:
+prism-media@^1.0.0:
   version "1.0.1"
-  resolved "https://codeload.github.com/amishshah/prism-media/tar.gz/9f7970f3497b12a26fb00a9d98fb3fc0a412a9ee"
+  resolved "https://registry.yarnpkg.com/prism-media/-/prism-media-1.0.1.tgz#3d033c214f9d79ca157bae7985938be65f521c02"
+  integrity sha512-Unmeibfk7b8wiiQFPlCC0GgCRaAejSpe2ElgfDkMi9ZmsqzeTbUnmiLNjyqONeKK+HMYINYHOgJFox5l7FU7YA==
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -1223,6 +1226,11 @@ sequelize@^4.43.1:
     uuid "^3.2.1"
     validator "^10.4.0"
     wkx "^0.4.1"
+
+setimmediate@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
+  integrity sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -1408,7 +1416,7 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
-tweetnacl@^1.0.0:
+tweetnacl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.1.tgz#2594d42da73cd036bd0d2a54683dd35a6b55ca17"
   integrity sha512-kcoMoKTPYnoeS50tzoqjPY3Uv9axeuuFAZY9M/9zFnhoVvRfxz9K29IMPD7jGmt2c8SW7i3gT9WqDl2+nV7p4A==
@@ -1501,10 +1509,10 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@^6.0.0:
-  version "6.1.4"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.4.tgz#5b5c8800afab925e94ccb29d153c8d02c1776ef9"
-  integrity sha512-eqZfL+NE/YQc1/ZynhojeV8q+H050oR8AZ2uIev7RU10svA9ZnJUddHcOUZTJLinZ9yEfdA2kSATS2qZK5fhJA==
+ws@^6.0.0, ws@^6.1.3:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.2.1.tgz#442fdf0a47ed64f59b6a5d8ff130f4748ed524fb"
+  integrity sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
   dependencies:
     async-limiter "~1.0.0"
 
