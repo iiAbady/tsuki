@@ -42,9 +42,13 @@ class PlayCommand extends Command {
 			return message.util.reply("I don't seem to have permission to enter this voice channel.");
 		} else if (!message.member.voice.channel.speakable) {
 			return message.util.send("I don't seem to have permission to talk in this voice channel.");
-		} else if (message.guild.me.voice && message.member.voice.channelID !== message.guild.me.voice.channelID && Boolean(message.guild.me.voice.channel.members.filter(m => !m.user.bot).size > 1)) {
-			return message.util.send(`You need to be listening in **${message.guild.me.voice.channel.name}** to do queue songs.`);
+		} else if (message.guild.me.voice && message.member.voice.channelID !== message.guild.me.voice.channelID) {
+			if (Boolean(message.guild.me.voice.channel.members.filter(m => !m.user.bot).size > 1)) {
+				return message.util.send(`You need to be listening in **${message.guild.me.voice.channel.name}** to do queue songs.`);
+			}
 		}
+
+
 		if (!query && message.attachments.first()) {
 			query = message.attachments.first().url;
 			if (!['.mp3', '.ogg', '.flac', '.m4a'].includes(path.parse(url.parse(query).path).ext)) return;

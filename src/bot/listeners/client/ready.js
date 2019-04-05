@@ -1,4 +1,5 @@
 const { Listener } = require('discord-akairo');
+const { ReferenceType } = require('rejects');
 
 class ReadyListener extends Listener {
 	constructor() {
@@ -13,7 +14,7 @@ class ReadyListener extends Listener {
 		this.client.logger.info(`Hello, I am ${this.client.user.tag} (${this.client.user.id}), one of the first fast battleships of the Sakura Empire. I'm someone who prefers the fist to the sword. Nice to meet you.`);
 		this.client.user.setActivity(`@${this.client.user.username} help 🎶`);
 
-		const players = await this.client.storage.get('players', { type: 'arr' });
+		const players = await this.client.storage.get('players', { type: ReferenceType.ARRAY });
 		if (players) {
 			for (const player of players) {
 				if (player.channel_id) {

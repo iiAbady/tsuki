@@ -43,7 +43,8 @@ class TsukiClient extends AkairoClient {
 				} : ''
 				/* eslint-enable multiline-ternary */
 			},
-			send: (guild, packet) => {
+			// eslint-disable-next-line require-await
+			send: async (guild, packet) => {
 				const shardGuild = this.guilds.get(guild);
 				if (shardGuild) return shardGuild.shard.send(packet);
 				return Promise.resolve();
