@@ -1,6 +1,4 @@
 const { Command } = require('discord-akairo');
-const ms = require('@naval-base/ms');
-const timeString = require('../../../util/timeString');
 
 class SeekCommand extends Command {
 	constructor() {
@@ -14,21 +12,23 @@ class SeekCommand extends Command {
 			args: [
 				{
 					id: 'time',
-					type: async (str, msg) => {
+					type: str => {
 						if (!str) return null;
-						const duration = ms(str);
-						const { current: encoded } = await this.client.music.queues.get(msg.guild.id);
-						const current = await this.client.music.decode(encoded);
-						if (duration && duration < (current.info.length - encoded.position)) return duration;
-						return null;
+						const duration = this.stringTime(str);
+						return isNaN(duration) ? null : duration;
 					},
 					prompt: {
 						start: msg => `${msg.author}, Where should I seek to to?`,
-						retry: msg => `${msg.author}, Please use a proper time format (Should be less than the current track duration)`
+						retry: msg => `${msg.author}, Please use a proper time format.`
 					}
 				}
 			]
 		});
+	}
+
+	stringTime(str) {
+		const [mins = 0, secs = 0] = str.split(':');
+		return (mins * 60 * 1000) + (secs * 1000);
 	}
 
 	// eslint-disable-next-line valid-jsdoc
@@ -36,11 +36,17 @@ class SeekCommand extends Command {
      * @param {import('discord.js').Message} message - the message
      */
 	async exec(message, { time }) {
-		if (!time) return message.channel.send(`What should I seek to?`);
+		if (!time) return message.channel.send(`Where should I seek to?`);
 		/** @type {import('lavaqueue').Queue} */
 		const queue = this.client.music.queues.get(message.guild.id);
-		await queue.player.seek(time);
-		return message.channel.send(`✂ ${timeString(time)} of current track`);
+		const current = await queue.current() || null;
+		if (!current) return message.channel.send(`There's is nothing playing to seek`);
+		const decoded = await this.client.music.decode(current.track);
+		if (time && time < decoded.info.length && decoded.info.isSeekable) {
+			await queue.player.seek(time);
+			return message.channel.send(`✂ ${time} of the current track`);
+		}
+		return message.channel.send(`I couldn't seek to ${time}, sorry ${this.client.emojis.get('538757805562265611').toString()}`);
 	}
 }
 
