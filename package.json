@@ -7,6 +7,7 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
+		"@naval-base/ms": "^2.2.1",
 		"common-tags": "^1.8.0",
 		"discord-akairo": "1Computer1/discord-akairo",
 		"discord.js": "discordjs/discord.js",

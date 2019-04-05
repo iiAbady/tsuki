@@ -1,4 +1,4 @@
-const { Argument, Control, Command } = require('discord-akairo');
+const { Argument, Command } = require('discord-akairo');
 const { stripIndents } = require('common-tags');
 const { MessageEmbed } = require('discord.js');
 const paginate = require('../../../util/paginate');
@@ -22,21 +22,12 @@ class SkipCommand extends Command {
 					match: 'flag',
 					flag: ['--force', '-f']
 				},
-				Control.if((msg, args) => msg.member.roles.has(msg.client.settings.get(msg.guild.id, 'djRole')) || args.force, [
-					{
-						'id': 'number',
-						'match': 'rest',
-						'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
-						'default': 1
-					}
-				], [
-					{
-						'id': 'number',
-						'match': 'rest',
-						'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, 10)),
-						'default': 1
-					}
-				])
+				{
+					'id': 'number',
+					'match': 'rest',
+					'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
+					'default': 1
+				}
 			]
 		});
 	}
@@ -51,9 +42,7 @@ class SkipCommand extends Command {
 		let tracks;
 		if (number > 1) {
 			tracks = await this.client.music.queues.redis.lrange(`playlists.${message.guild.id}.next`, 0, number - 2);
-			this.client.logger.info(tracks);
 			 tracks = tracks.reverse();
-			 this.client.logger.info(tracks);
 		}
 		const current = await queue.current();
 		tracks = [(current || { track: null }).track].concat(tracks).filter(track => track);
