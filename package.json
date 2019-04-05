@@ -1,6 +1,6 @@
 {
 	"name": "tsuki",
-	"version": "0.8.0-BETA",
+	"version": "1.0.0",
 	"description": "",
 	"main": "src/tsuki.js",
 	"author": "Abady <gamersspeaks@gmail.com>",

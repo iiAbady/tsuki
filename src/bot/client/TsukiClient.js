@@ -135,7 +135,7 @@ class TsukiClient extends AkairoClient {
 				captureUnhandledRejections: true,
 				autoBreadcrumbs: true,
 				environment: process.env.NODE_ENV,
-				release: '0.8.0'
+				release: '1.0.0'
 			}).install();
 		} else {
 			process.on('unhandledRejection', this.logger.warn);
