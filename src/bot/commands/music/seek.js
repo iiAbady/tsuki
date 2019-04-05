@@ -7,8 +7,9 @@ class SeekCommand extends Command {
 			description: {
 				content: 'Seek the current track',
 				usage: '<time>',
-				examples: ['5m']
+				examples: ['2:33']
 			},
+			category: 'music',
 			args: [
 				{
 					id: 'time',
