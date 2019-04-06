@@ -35,7 +35,7 @@ class PlaylistLoadCommand extends Command {
 		}
 		const user = await this.client.users.fetch(playlist.user);
 		const queue = this.client.music.queues.get(message.guild.id);
-		if (!message.guild.me.voice.channel) await queue.player.join(message.member.voice.channel.id);
+		if (!message.guild.me.voice.channel) await queue.player.join(message.member.voice.channel.id, { deaf: true });
 		await queue.add(...playlist.songs);
 		if (!queue.player.playing && !queue.player.paused) await queue.start();
 		playlist.plays += 1;

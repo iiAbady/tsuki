@@ -58,7 +58,7 @@ class PlayCommand extends Command {
 		if (!['http:', 'https:'].includes(url.parse(query).protocol)) query = `ytsearch:${query}`;
 		const res = await this.client.music.load(query);
 		const queue = this.client.music.queues.get(message.guild.id);
-		if (!message.guild.me.voice.channel || message.guild.me.voice.channel.members.filter(m => !m.user.bot).size < 1) await queue.player.join(message.member.voice.channel.id);
+		if (!message.guild.me.voice.channel || message.guild.me.voice.channel.members.filter(m => !m.user.bot).size < 1) await queue.player.join(message.member.voice.channel.id, { deaf: true });
 		let msg;
 		if (['TRACK_LOADED', 'SEARCH_RESULT'].includes(res.loadType)) {
 			if (unshift) await queue.unshift(res.tracks[0].track);
