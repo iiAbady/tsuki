@@ -5,6 +5,7 @@ class SeekCommand extends Command {
 	constructor() {
 		super('seek', {
 			aliases: ['seek', '✂'],
+			channel: 'guild',
 			description: {
 				content: 'Seek the current track',
 				usage: '<time>',
