@@ -1,6 +1,6 @@
 function timeString(seconds, forceHours = false, ms = true) {
 	if (ms) seconds /= 1000;
-	if (seconds > 86400000) return 'LIVE';
+	if (seconds > 86400000) return '🔴 **LIVE**';
 
 	const hours = Math.floor(seconds / 3600);
 	const minutes = Math.floor(seconds % 3600 / 60);
