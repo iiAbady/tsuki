@@ -32,8 +32,8 @@ class StatsCommand extends Command {
 				stripIndents`
 				• Guilds: ${this.client.guilds.size}
 				• Channels: ${this.client.channels.size}
-				• Queues: ${this.client.music.queues ? this.music.queues.size : '0'}
-				• Players: ${this.client.music.players ? this.music.players.size : '0'}
+				• Queues: ${this.client.music.queues ? this.client.music.queues.size : '0'}
+				• Players: ${this.client.music.players ? this.client.music.players.size : '0'}
 			`,
 				true
 			)
