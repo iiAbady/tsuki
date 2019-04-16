@@ -2,10 +2,10 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 
-class InviteCommand extends Command {
+class DonateCommand extends Command {
 	constructor() {
-		super('invite', {
-			aliases: ['invite', 'inv'],
+		super('donate', {
+			aliases: ['donate'],
 			category: 'util',
 			ratelimit: 2
 		});
@@ -17,11 +17,11 @@ class InviteCommand extends Command {
      */
 	exec(message) {
 		const embed = new MessageEmbed()
-			.setColor('FFFF00')
-			.setDescription(`I'd love to! [Invite me](https://discordapp.com/oauth2/authorize?client_id=535465700433723413&scope=bot&permissions=37014848)`);
+			.setColor('BLUE')
+			.setDescription(`All money will goes to the host of this bot and none more, https://donate.abady.me`);
 		return message.channel.send(embed);
 	}
 }
 
 
-module.exports = InviteCommand;
+module.exports = DonateCommand;
