@@ -18,7 +18,7 @@ class DonateCommand extends Command {
 	exec(message) {
 		const embed = new MessageEmbed()
 			.setColor('BLUE')
-			.setDescription(`All money will goes to the host of this bot and none more, https://donate.abady.me`);
+			.setDescription(`All money will goes to the host of this bot and none more, http://donate.abady.me`);
 		return message.channel.send(embed);
 	}
 }
