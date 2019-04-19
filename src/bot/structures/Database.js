@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 const { join } = require('path');
 
 const sequelize = new Sequelize(process.env.DB, {
