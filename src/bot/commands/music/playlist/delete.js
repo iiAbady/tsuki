@@ -25,10 +25,10 @@ class PlaylistDeleteCommand extends Command {
 	}
 
 	exec(message, { playlist }) {
-		if (playlist.user !== message.author.id) return message.util.reply('you can only delete your own playlists.');
+		if (playlist.user !== message.author.id) return message.util.reply(`👮 sorry sir that's not allowed`);
 		playlist.destroy();
 
-		return message.util.reply(`${this.client.emojis.get('544263946979246129').toString()} Deleted **${playlist.name}**.`);
+		return message.util.reply(`${this.client.emojis.get('568555845923897355').toString()} Deleted **${playlist.name}**.`);
 	}
 }
 

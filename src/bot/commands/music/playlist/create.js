@@ -37,7 +37,7 @@ class PlaylistCreateCommand extends Command {
 			description: info ? Util.cleanContent(info, message) : null
 		});
 
-		return message.util.reply(`${this.client.emojis.get('544263946979246129').toString()} A playlist with the name **${pls.name}** has been created!`);
+		return message.util.reply(`${this.client.emojis.get('568555845923897355').toString()} A playlist with the name **${pls.name}** has been created!`);
 	}
 }
 

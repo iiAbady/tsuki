@@ -33,11 +33,11 @@ class PlaylistEditCommand extends Command {
 	}
 
 	async exec(message, { playlist, info }) {
-		if (playlist.user !== message.author.id) return message.util.reply(`${this.client.emojis.get('531969546723000323').toString()} fk off bit**`);
+		if (playlist.user !== message.author.id) return message.util.reply(`👮 sorry sir that's not allowed`);
 		playlist.description = Util.cleanContent(info, message);
 		await playlist.save();
 
-		return message.util.reply(`${this.client.emojis.get('544263946979246129').toString()} Updated **${playlist.name}'s** description.`);
+		return message.util.reply(`${this.client.emojis.get('568555845923897355').toString()} Updated **${playlist.name}'s** description.`);
 	}
 }
 
