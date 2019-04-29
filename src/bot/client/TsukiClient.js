@@ -106,7 +106,7 @@ class TsukiClient extends AkairoClient {
 			}
 		});
 
-		this.commandHandler.resolver.addType('playlist', async (phrase, message) => {
+		this.commandHandler.resolver.addType('playlist', async (message, phrase) => {
 			if (!phrase) return Flag.fail(phrase);
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
@@ -118,7 +118,7 @@ class TsukiClient extends AkairoClient {
 			return playlist || Flag.fail(phrase);
 		});
 
-		this.commandHandler.resolver.addType('existingPlaylist', async (phrase, message) => {
+		this.commandHandler.resolver.addType('existingPlaylist', async (message, phrase) => {
 			if (!phrase) return Flag.fail(phrase);
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
