@@ -16,7 +16,7 @@ class PlaylistInfoCommand extends Command {
 			args: [
 				{
 					'id': 'page',
-					'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
+					'type': Argument.compose((_, str) => str.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
 					'default': 1,
 					'match': 'content'
 				}

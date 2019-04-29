@@ -22,13 +22,13 @@ class PlaylistShowCommand extends Command {
 					type: 'playlist',
 					prompt: {
 						start: message => `${message.author}, What playlist do you want information on?`,
-						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
+						retry: (message, { failure }) => `${message.author}, a playlist with the name **${failure.value}** does not exist.`
 					}
 				},
 				{
 					'id': 'page',
 					'match': 'content',
-					'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
+					'type': Argument.compose((_, str) => str.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
 					'default': 1
 				}
 			]

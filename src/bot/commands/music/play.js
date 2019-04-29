@@ -23,7 +23,8 @@ class PlayCommand extends Command {
 				{
 					'id': 'query',
 					'match': 'rest',
-					'type': Argument.compose('string', string => string ? string.replace(/<(.+)>/g, '$1') : ''), // eslint-disable-line no-confusing-arrow
+					// eslint-disable-next-line no-confusing-arrow
+					'type': Argument.compose('string', (_, str) => str ? str.replace(/<(.+)>/g, '$1') : ''),
 					'default': ''
 				}
 			]

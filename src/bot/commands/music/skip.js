@@ -15,21 +15,15 @@ class SkipCommand extends Command {
 			},
 			category: 'music',
 			channel: 'guild',
-			ratelimit: 2,
-			args: [
-				{
-					id: 'force',
-					match: 'flag',
-					flag: ['--force', '-f']
-				},
-				{
-					'id': 'number',
-					'match': 'rest',
-					'type': Argument.compose(string => string.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity)),
-					'default': 1
-				}
-			]
+			ratelimit: 2
 		});
+	}
+
+	*args() {
+		const number = yield {
+			match: 'rest', type: Argument.compose((_, str) => str.replace(/\s/g, ''), Argument.range(Argument.union('number', 'emojint'), 1, Infinity))
+		};
+		return { number };
 	}
 
 	async exec(message, { number }) {

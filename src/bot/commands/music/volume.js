@@ -1,4 +1,4 @@
-const { Command } = require('discord-akairo');
+const { Command, Argument } = require('discord-akairo');
 
 class VolumeCommand extends Command {
 	constructor() {
@@ -16,7 +16,7 @@ class VolumeCommand extends Command {
 				{
 					id: 'vol',
 					match: 'phrase',
-					type: 'integer'
+					type: Argument.compose((_, str) => str.replace(/\s/g, ''), Argument.union('number', 'emojint'))
 				}
 			]
 		});

@@ -1,5 +1,5 @@
 const { join } = require('path');
-const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } = require('discord-akairo');
+const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, Flag } = require('discord-akairo');
 const { Util } = require('discord.js');
 const { Client: Lavaqueue } = require('lavaqueue');
 const { createLogger, transports, format } = require('winston');
@@ -92,18 +92,22 @@ class TsukiClient extends AkairoClient {
 			commandUtil: true,
 			commandUtilLifetime: 5000,
 			defaultCooldown: 3000,
-			defaultPrompt: {
-				modifyStart: str => `${str}\n\nType \`cancel\` to cancel the command.`,
-				modifyRetry: str => `${str}\n\nType \`cancel\` to cancel the command.`,
-				timeout: ':x: You took too long! **cancelled**',
-				ended: ":x: You've used your 3/3 tries! **cancelled**",
-				cancel: ':x: Cancelled',
-				retries: 3,
-				time: 30000
+			argumentDefaults: {
+				prompt: {
+					modifyStart: (_, str) => `${str}\n\nType \`cancel\` to cancel the command.`,
+					modifyRetry: (_, str) => `${str}\n\nType \`cancel\` to cancel the command.`,
+					timeout: ':x: You took too long! **cancelled**',
+					ended: ":x: You've used your 3/3 tries! **cancelled**",
+					cancel: ':x: Cancelled',
+					retries: 3,
+					time: 30000
+				},
+				otherwise: ''
 			}
 		});
+
 		this.commandHandler.resolver.addType('playlist', async (phrase, message) => {
-			if (!phrase) return null;
+			if (!phrase) return Flag.fail(phrase);
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
 				where: {
@@ -111,10 +115,11 @@ class TsukiClient extends AkairoClient {
 				}
 			});
 
-			return playlist || null;
+			return playlist || Flag.fail(phrase);
 		});
+
 		this.commandHandler.resolver.addType('existingPlaylist', async (phrase, message) => {
-			if (!phrase) return null;
+			if (!phrase) return Flag.fail(phrase);
 			phrase = Util.cleanContent(phrase.toLowerCase(), message);
 			const playlist = await this.db.models.playlists.findOne({
 				where: {
@@ -122,7 +127,7 @@ class TsukiClient extends AkairoClient {
 				}
 			});
 
-			return playlist ? null : phrase;
+			return playlist ? Flag.fail(phrase) : phrase;
 		});
 
 		this.inhibitorHandler = new InhibitorHandler(this, { directory: join(__dirname, '..', 'inhibitors') });
