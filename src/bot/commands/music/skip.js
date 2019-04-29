@@ -62,7 +62,7 @@ class SkipCommand extends Command {
 
 		**Total skipped time:** ${timeString(totalLength)}
 	`).setColor('ORANGE')
-	 .setFooter(`Requested by ${message.author.tag} (${message.author.id})`, message.author.avatarURL);
+	 .setFooter(`Requested by ${message.author.tag} (${message.author.id})`, message.author.avatarURL());
 
 		return message.util.send(embed);
 	}

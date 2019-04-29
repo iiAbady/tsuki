@@ -31,7 +31,7 @@ class PlaylistRemoveCommand extends Command {
 	}
 
 	async exec(message, { playlist, position }) {
-		if (playlist.user !== message.author.id) return message.util.reply(`${this.client.emojis.get('531969546723000323').toString()} fk off bit**`);
+		if (playlist.user !== message.author.id) return message.util.reply(`👮 sorry sir that's not allowed`);
 		position = position >= 1 ? position - 1 : playlist.songs.length - (~position + 1);
 		const decoded = await this.client.music.decode([playlist.songs[position]]);
 		playlist.songs.splice(position, 1);

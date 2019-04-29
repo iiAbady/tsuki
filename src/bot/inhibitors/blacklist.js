@@ -9,7 +9,7 @@ class BlacklistInhibitor extends Inhibitor {
 
 	exec(message) {
 		const blacklist = this.client.settings.get('global', 'blacklist', []);
-		return blacklist.includes(message.author.id);
+		return blacklist.includes(message.author.id) || blacklist.includes(message.guild.id);
 	}
 }
 

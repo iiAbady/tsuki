@@ -32,7 +32,7 @@ class StartCommand extends Command {
 		}
 		const queue = this.client.music.queues.get(message.guild.id);
 		if (!message.guild.me.voice || !message.guild.me.voice.channel || force) {
-			await queue.player.join(message.member.voice.channel.id);
+			await queue.player.join(message.member.voice.channel.id, { deaf: true });
 			message.util.send(':thumbsup:');
 		}
 		if ((!queue.player.playing && !queue.player.paused) || force) await queue.start();

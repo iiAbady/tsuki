@@ -12,19 +12,19 @@
 		"discord.js": "discordjs/discord.js#pull/3140/head",
 		"dotenv": "^7.0.0",
 		"ioredis": "^4.9.1",
-		"lavalink": "2.5.0",
-		"lavaqueue": "3.1.0",
+		"lavalink": "2.6.1",
+		"lavaqueue": "3.1.1",
 		"moment": "^2.24.0",
 		"moment-duration-format": "^2.2.2",
-		"pg": "7.9.0",
+		"pg": "7.10.0",
 		"raven": "^2.6.4",
 		"rejects": "^0.6.2",
-		"sequelize": "^4.43.1",
+		"sequelize": "^5.7.6",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
 		"eslint": "^5.16.0",
-		"eslint-config-aqua": "^4.4.1"
+		"eslint-config-aqua": "^5.0.0"
 	},
 	"optionalDependencies": {
 		"@discordjs/uws": "^11.149.1",

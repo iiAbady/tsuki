@@ -1,7 +1,7 @@
 FROM node:10-alpine
 
 LABEL name "Tsuki"
-LABEL version "0.1.0"
+LABEL version "1.0.0"
 LABEL maintainer "Abady <gamersspeaks@gmail.com>"
 
 WORKDIR /usr/src/tsuki

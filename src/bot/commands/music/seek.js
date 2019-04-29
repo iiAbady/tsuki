@@ -5,6 +5,7 @@ class SeekCommand extends Command {
 	constructor() {
 		super('seek', {
 			aliases: ['seek', '✂'],
+			channel: 'guild',
 			description: {
 				content: 'Seek the current track',
 				usage: '<time>',
@@ -46,7 +47,7 @@ class SeekCommand extends Command {
 		const decoded = await this.client.music.decode(current.track);
 		if (time && time < decoded.length && decoded.isSeekable) {
 			await queue.player.seek(time);
-			return message.util.send(`sought to **${timeString(time)}** of the current track, happy bitc*?`);
+			return message.util.send(`sought to **${timeString(time)}** of the current track, happy now?`);
 		}
 		return message.util.send(`I couldn't seek to **${timeString(time)}**, sorry ${this.client.emojis.get('538757805562265611').toString()}`);
 	}
