@@ -39,7 +39,7 @@ class StatsCommand extends Command {
 			.addField(
 				'❯ Library',
 				stripIndents`
-				[discord.js](https://github.com/discordjs/discord.js/tree/stable) **::** ${djsversion}
+				[discord.js](https://github.com/discordjs/discord.js/tree/master) **::** ${djsversion}
 				[akairo](https://github.com/1Computer1/discord-akairo/tree/master) **::** ${daversion}
 				`,
 				true
