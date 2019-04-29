@@ -15,7 +15,7 @@ class SeekCommand extends Command {
 			args: [
 				{
 					id: 'time',
-					type: str => {
+					type: (_, str) => {
 						if (!str) return null;
 						const duration = this.stringTime(str);
 						return isNaN(duration) ? null : duration;

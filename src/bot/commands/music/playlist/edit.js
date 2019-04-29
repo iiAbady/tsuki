@@ -17,7 +17,7 @@ class PlaylistEditCommand extends Command {
 					type: 'playlist',
 					prompt: {
 						start: message => `${message.author}, What playlists description do you want to edit?`,
-						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
+						retry: (message, { failure }) => `${message.author}, a playlist with the name **${failure.value}** does not exist.`
 					}
 				},
 				{

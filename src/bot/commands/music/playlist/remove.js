@@ -17,7 +17,7 @@ class PlaylistRemoveCommand extends Command {
 					type: 'playlist',
 					prompt: {
 						start: message => `${message.author}, what playlist should this song/playlist be removed from?`,
-						retry: (message, _, provided) => `${message.author}, a playlist with the name **${provided.phrase}** does not exist.`
+						retry: (message, { failure }) => `${message.author}, a playlist with the name **${failure.value}** does not exist.`
 					}
 				},
 				{

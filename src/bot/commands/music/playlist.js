@@ -1,4 +1,4 @@
-const { Command } = require('discord-akairo');
+const { Command, Flag } = require('discord-akairo');
 const { stripIndents } = require('common-tags');
 
 class PlaylistCommand extends Command {
@@ -37,40 +37,28 @@ class PlaylistCommand extends Command {
 			},
 			category: 'music',
 			channel: 'guild',
-			ratelimit: 2,
-			args: [
-				{
-					id: 'method',
-					type: ['create', 'add', 'load', 'rm', 'remove', 'del', 'delete', 'edit', 'show', 'info', 'list', 'all', 'search']
-				},
-				{
-					'id': 'args',
-					'match': 'rest',
-					'default': ''
-				}
-			]
+			ratelimit: 2
 		});
 	}
 
-	exec(message, { method, args }) {
-		if (!method) return;
-		const command = {
-			'create': this.handler.modules.get('playlist-create'),
-			'load': this.handler.modules.get('playlist-load'),
-			'add': this.handler.modules.get('playlist-add'),
-			'rm': this.handler.modules.get('playlist-remove'),
-			'remove': this.handler.modules.get('playlist-remove'),
-			'del': this.handler.modules.get('playlist-delete'),
-			'delete': this.handler.modules.get('playlist-delete'),
-			'edit': this.handler.modules.get('playlist-edit'),
-			'show': this.handler.modules.get('playlist-show'),
-			'info': this.handler.modules.get('playlist-info'),
-			'list': this.handler.modules.get('playlist-list'),
-			'all': this.handler.modules.get('playlist-all'),
-			'search': this.handler.modules.get('playlist-search')
-		}[method];
-
-		return this.handler.handleDirectCommand(message, args, command, true);
+	*args() {
+		const method = yield {
+			type: [
+				['playlist-show', 'show'],
+				['playlist-create', 'create'],
+				['playlist-add', 'add'],
+				['playlist-load', 'load'],
+				['playlist-remove', 'rm', 'remove'],
+				['playlist-delete', 'del', 'delete'],
+				['playlist-edit', 'edit'],
+				['playlist-info', 'info'],
+				['playlist-list', 'list'],
+				['playlist-all', 'all'],
+				['playlist-search', 'search']
+			],
+			otherwise: ''
+		};
+		return Flag.continue(method);
 	}
 }
 
