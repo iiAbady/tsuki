@@ -19,7 +19,7 @@
 		"pg": "7.10.0",
 		"raven": "^2.6.4",
 		"rejects": "^0.6.2",
-		"sequelize": "^5.8.5",
+		"sequelize": "^5.8.6",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
