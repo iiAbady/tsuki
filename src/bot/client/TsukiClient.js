@@ -18,7 +18,7 @@ class TsukiClient extends AkairoClient {
 
 		this.logger = createLogger({
 			format: format.combine(
-				format.colorize({ all: true }),
+				format.colorize({ level: true }),
 				format.timestamp({ format: moment().utcOffset('+03:00').format('YYYY/MM/DD HH:mm:ss') }),
 				format.printf(info => {
 					const { timestamp, level, message, ...rest } = info;
