@@ -8,6 +8,7 @@ const database = require('../structures/Database');
 const { default: Storage, ReferenceType } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
 const moment = require('moment');
+const { version } = require('../../package.json');
 
 class TsukiClient extends AkairoClient {
 	constructor(config) {
@@ -145,7 +146,7 @@ class TsukiClient extends AkairoClient {
 			init({
 				dsn: process.env.SENTRY,
 				environment: process.env.NODE_ENV,
-				release: '1.0.0'
+				release: version
 			});
 		} else {
 			process.on('unhandledRejection', err => this.logger.warn(`[UNHANDLED REJECTION] ${err.message}`, err.stack));
