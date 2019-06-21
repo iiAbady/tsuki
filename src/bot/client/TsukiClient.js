@@ -8,7 +8,7 @@ const database = require('../structures/Database');
 const { default: Storage, ReferenceType } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
 const moment = require('moment');
-const { version } = require('../../package.json');
+const { version } = require('../../../package.json');
 
 class TsukiClient extends AkairoClient {
 	constructor(config) {
