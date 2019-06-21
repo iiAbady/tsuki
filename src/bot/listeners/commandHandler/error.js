@@ -1,5 +1,5 @@
 const { Listener } = require('discord-akairo');
-const Raven = require('raven');
+const { addBreadcrumb, Severity, captureException } = require('@sentry/node');
 
 const RESPONSES = [
 	`W-What?!?! That was unexpected. (Error: !{err})`,
@@ -18,9 +18,10 @@ class CommandErrorListener extends Listener {
 
 	exec(error, message, command) {
 		this.client.logger.error(`[COMMAND ERROR] ${error.message}`, error.stack);
-		Raven.captureBreadcrumb({
+		addBreadcrumb({
 			message: 'command_errored',
 			category: command ? command.category.id : 'inhibitor',
+			level: Severity.Error,
 			data: {
 				user: {
 					id: message.author.id,
@@ -43,7 +44,7 @@ class CommandErrorListener extends Listener {
 				/* eslint-enable multiline-ternary */
 			}
 		});
-		Raven.captureException(error);
+		captureException(error);
 		return message.util.send(
 			RESPONSES[Math.floor(Math.random() * RESPONSES.length)]
 				.replace('!{err}', `${command.id}${error.message.length + command.id.length}`)

@@ -1,6 +1,6 @@
 FROM node:10-alpine AS build
 WORKDIR /usr/src/tsuki
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock .yarnlock ./
 RUN apk add --update \
 && apk add --no-cache ca-certificates \
 && apk add --no-cache --virtual .build-deps git curl build-base python g++ make \
@@ -23,5 +23,5 @@ ENV NODE_ENV= \
 	LAVALINK_WS= \
 	DB= \
 	REDIS= \
-	RAVEN=
+	SENTRY=
 CMD ["node", "src/tsuki.js"]

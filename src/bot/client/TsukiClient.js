@@ -3,11 +3,11 @@ const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, Flag } 
 const { Util } = require('discord.js');
 const { Client: Lavaqueue } = require('lavaqueue');
 const { createLogger, transports, format } = require('winston');
+const { init } = require('@sentry/node');
 const database = require('../structures/Database');
 const { default: Storage, ReferenceType } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
 const moment = require('moment');
-const Raven = require('raven');
 
 class TsukiClient extends AkairoClient {
 	constructor(config) {
@@ -141,15 +141,14 @@ class TsukiClient extends AkairoClient {
 
 		this.config = config;
 
-		if (process.env.RAVEN) {
-			Raven.config(process.env.RAVEN, {
-				captureUnhandledRejections: true,
-				autoBreadcrumbs: true,
+		if (process.env.SENTRY) {
+			init({
+				dsn: process.env.SENTRY,
 				environment: process.env.NODE_ENV,
 				release: '1.0.0'
-			}).install();
+			});
 		} else {
-			process.on('unhandledRejection', this.logger.warn);
+			process.on('unhandledRejection', err => this.logger.warn(`[UNHANDLED REJECTION] ${err.message}`, err.stack));
 		}
 	}
 

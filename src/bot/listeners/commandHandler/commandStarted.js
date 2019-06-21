@@ -1,5 +1,5 @@
 const { Listener } = require('discord-akairo');
-const Raven = require('raven');
+const { addBreadcrumb, Severity } = require('@sentry/node');
 
 class CommandStartedListener extends Listener {
 	constructor() {
@@ -11,9 +11,10 @@ class CommandStartedListener extends Listener {
 	}
 
 	exec(message, command, args) {
-		Raven.captureBreadcrumb({
+		addBreadcrumb({
 			message: 'command_started',
 			category: command.category.id,
+			level: Severity.Info,
 			data: {
 				user: {
 					id: message.author.id,
@@ -35,29 +36,6 @@ class CommandStartedListener extends Listener {
 				},
 				args
 			}
-		});
-		Raven.setContext({
-			user: {
-				id: message.author.id,
-				username: message.author.tag
-			},
-			extra: {
-				guild: message.guild ? {
-					id: message.guild.id,
-					name: message.guild.name
-				} : null,
-				command: {
-					id: command.id,
-					aliases: command.aliases,
-					category: command.category.id
-				},
-				message: {
-					id: message.id,
-					content: message.content
-				},
-				args
-			}
-			/* eslint-enable multiline-ternary */
 		});
 	}
 }
