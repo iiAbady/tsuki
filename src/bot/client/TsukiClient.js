@@ -6,6 +6,7 @@ const { createLogger, transports, format } = require('winston');
 const database = require('../structures/Database');
 const { default: Storage, ReferenceType } = require('rejects');
 const SettingsProvider = require('../structures/SettingsProvider');
+const moment = require('moment');
 const Raven = require('raven');
 
 class TsukiClient extends AkairoClient {
@@ -18,10 +19,15 @@ class TsukiClient extends AkairoClient {
 		this.logger = createLogger({
 			format: format.combine(
 				format.colorize({ all: true }),
-				format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
-				format.printf(info => `[${info.timestamp}] ${info.level}: ${info.message}`)
+				format.timestamp({ format: moment().utcOffset('+03:00').format('YYYY/MM/DD HH:mm:ss') }),
+				format.printf(info => {
+					const { timestamp, level, message, ...rest } = info;
+					return `[${timestamp}] ${level}: ${message}${Object.keys(rest).length ? `\n${JSON.stringify(rest, null, 2)}` : ''}`;
+				})
 			),
-			transports: [new transports.Console()]
+			transports: [
+				new transports.Console({ level: 'info' })
+			]
 		});
 
 		this.db = database;
