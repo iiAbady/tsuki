@@ -7,7 +7,7 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
-		"@sentry/node": "^5.4.2",
+		"@sentry/node": "^5.4.3",
 		"common-tags": "^1.8.0",
 		"discord-akairo": "discord-akairo/discord-akairo",
 		"discord.js": "discordjs/discord.js",
