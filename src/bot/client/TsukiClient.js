@@ -41,16 +41,14 @@ class TsukiClient extends AkairoClient {
 			hosts: {
 				rest: process.env.LAVALINK_REST ? process.env.LAVALINK_REST : 'http://localhost:7000',
 				ws: process.env.LAVALINK_WS ? process.env.LAVALINK_WS : 'ws://localhost:7000',
-				/* eslint-disable multiline-ternary */
+				// eslint-disable-next-line multiline-ternary
 				redis: process.env.REDIS ? {
 					port: 6379,
 					host: process.env.REDIS,
 					db: 0,
 					password: 'abooody888'
 				} : ''
-				/* eslint-enable multiline-ternary */
 			},
-			// eslint-disable-next-line require-await
 			send: async (guild, packet) => {
 				const shardGuild = this.guilds.get(guild);
 				if (shardGuild) return shardGuild.shard.send(packet);
@@ -75,7 +73,6 @@ class TsukiClient extends AkairoClient {
 					let index; // eslint-disable-line no-case-declarations
 					if (Array.isArray(players)) index = players.findIndex(player => player.guild_id === packet.d.guild_id);
 					if (((!players && !index) || index < 0) && packet.d.channel_id) {
-						// eslint-disable-next-line camelcase
 						await this.storage.upsert('players', [{ guild_id: packet.d.guild_id, channel_id: packet.d.channel_id }]);
 					} else if (players && typeof index !== 'undefined' && index >= 0 && !packet.d.channel_id) {
 						players.splice(index, 1);
