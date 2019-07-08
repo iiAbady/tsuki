@@ -7,19 +7,19 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
-		"@sentry/node": "^5.4.3",
+		"@sentry/node": "^5.5.0",
 		"common-tags": "^1.8.0",
 		"discord-akairo": "discord-akairo/discord-akairo",
 		"discord.js": "discordjs/discord.js",
 		"dotenv": "^8.0.0",
 		"ioredis": "^4.11.1",
-		"lavalink": "2.6.1",
+		"lavalink": "2.8.1",
 		"lavaqueue": "3.1.2",
 		"moment": "^2.24.0",
 		"moment-duration-format": "^2.3.2",
 		"pg": "7.11.0",
 		"rejects": "^0.6.2",
-		"sequelize": "^5.9.2",
+		"sequelize": "^5.9.4",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
