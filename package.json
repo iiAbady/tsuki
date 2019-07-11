@@ -26,11 +26,7 @@
 		"eslint": "^5.16.0",
 		"eslint-config-aqua": "^6.0.0"
 	},
-	"optionalDependencies": {
-		"@discordjs/uws": "^11.149.1",
-		"erlpack": "discordapp/erlpack",
-		"zlib-sync": "^0.1.4"
-	},
+	"optionalDependencies": {},
 	"eslintConfig": {
 		"extends": "aqua/node"
 	},
