@@ -59,7 +59,7 @@ class QueueCommand extends Command {
 			.addField('Repeat', this.client.settings.get(message.guild.id, 'repeat', 'off').toUpperCase(), true)
 			.addField('Status', ['INSTANTIATED', 'PLAYING', 'PAUSED', 'ENDED', 'ERRORED', 'STUCK'][queue.player.status], true)
 			.setColor('#7ec0ee');
-		if (paginated.maxPage > 1) embed.setFooter(`Page ${page}/${paginated.maxPage}`, 'https://i.imgur.com/nFPDKdU.png');
+		if (paginated.maxPage > 1) embed.setFooter(`Page ${page >= paginated.maxPage ? paginated.maxPage : page}/${paginated.maxPage}`, 'https://i.imgur.com/nFPDKdU.png');
 
 		return message.util.send(embed);
 	}
