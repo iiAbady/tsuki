@@ -17,10 +17,13 @@ class TsukiClient extends AkairoClient {
 			disableEvents: ['TYPING_START']
 		});
 
+		const time = moment().utcOffset('+03:00').format('YYYY/MM/DD HH:mm:ss');
+
 		this.logger = createLogger({
 			format: format.combine(
 				format.colorize({ level: true }),
-				format.timestamp({ format: moment().utcOffset('+03:00').format('YYYY/MM/DD HH:mm:ss') }),
+				// @ts-ignore
+				format.timestamp({ format: time }),
 				format.printf(info => {
 					const { timestamp, level, message, ...rest } = info;
 					return `[${timestamp}] ${level}: ${message}${Object.keys(rest).length ? `\n${JSON.stringify(rest, null, 2)}` : ''}`;
