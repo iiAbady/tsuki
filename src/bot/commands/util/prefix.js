@@ -13,7 +13,7 @@ class PrefixCommand extends Command {
 			args: [
 				{
 					id: 'newPrefix',
-					type: Argument.compose('string', string => string ? string.toLowerCase() : '') // eslint-disable-line no-confusing-arrow
+					type: Argument.compose('string', (_, string) => string ? string.toLowerCase() : '') // eslint-disable-line no-confusing-arrow
 				}
 			]
 		});
