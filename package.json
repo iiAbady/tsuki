@@ -23,7 +23,7 @@
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
-		"eslint": "^6.2.1",
+		"eslint": "^6.3.0",
 		"eslint-config-aqua": "^6.0.2"
 	},
 	"optionalDependencies": {},
