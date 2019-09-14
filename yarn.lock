@@ -374,7 +374,8 @@ diagnostics@^1.1.1:
 
 discord-akairo@discord-akairo/discord-akairo:
   version "8.0.0-beta.8"
-  resolved "https://codeload.github.com/discord-akairo/discord-akairo/tar.gz/817327e64546062353ac595d64b52924896d032a"
+  uid "2fd87796b135b1d79bf8c0fa6798becb73a37140"
+  resolved "https://codeload.github.com/discord-akairo/discord-akairo/tar.gz/2fd87796b135b1d79bf8c0fa6798becb73a37140"
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
