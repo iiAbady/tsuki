@@ -14,7 +14,7 @@
 		"dotenv": "^8.2.0",
 		"ioredis": "^4.14.1",
 		"lavalink": "2.8.2",
-		"lavaqueue": "3.1.5",
+		"lavaqueue": "3.1.6",
 		"moment": "^2.24.0",
 		"moment-duration-format": "^2.3.2",
 		"pg": "7.14.0",
