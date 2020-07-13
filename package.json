@@ -19,7 +19,7 @@
 		"moment-duration-format": "^2.3.2",
 		"pg": "7.14.0",
 		"rejects": "^0.6.2",
-		"sequelize": "^5.21.3",
+		"sequelize": "^6.3.3",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
