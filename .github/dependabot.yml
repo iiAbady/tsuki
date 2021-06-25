@@ -1,0 +1,40 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@sentry/node"
+    versions:
+    - 6.0.2
+    - 6.0.3
+    - 6.0.4
+    - 6.1.0
+    - 6.2.0
+    - 6.2.1
+    - 6.2.2
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.3.0
+    - 6.3.1
+  - dependency-name: ioredis
+    versions:
+    - 4.19.4
+    - 4.22.0
+    - 4.23.0
+    - 4.24.2
+    - 4.24.3
+    - 4.24.4
+    - 4.24.5
+    - 4.24.6
+    - 4.25.0
+    - 4.26.0
+  - dependency-name: pg
+    versions:
+    - 8.5.1
+  - dependency-name: sequelize
+    versions:
+    - 6.3.3
