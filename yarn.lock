@@ -385,9 +385,9 @@ diagnostics@^1.1.1:
     kuler "1.0.x"
 
 discord-akairo@discord-akairo/discord-akairo:
-  version "8.0.0-beta.8"
-  uid "563d57b428ab7dfee3cdedf04834f6d3d606481e"
-  resolved "https://codeload.github.com/discord-akairo/discord-akairo/tar.gz/563d57b428ab7dfee3cdedf04834f6d3d606481e"
+  version "8.1.0"
+  uid c15cc4e2a9fdc7bcb242d771cba02dfaaa3d1695
+  resolved "https://codeload.github.com/discord-akairo/discord-akairo/tar.gz/c15cc4e2a9fdc7bcb242d771cba02dfaaa3d1695"
 
 discord.js@discordjs/discord.js:
   version "12.0.0-dev"
